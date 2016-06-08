@@ -8,7 +8,8 @@
     "url": "https://edm00se.io/"
   },
   "files": [
-    "generators"
+    "generators",
+    "common"
   ],
   "main": "generators/index.js",
   "engines": {
