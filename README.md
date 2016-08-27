@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/edm00se/generator-xsp.png?label=ready&title=Ready)](https://waffle.io/edm00se/generator-xsp)
 # generator-xsp
 
 > a yeoman generator to scaffold an XPages runtime (xsp) compliant On Disk Project (ODP)
