@@ -1,5 +1,7 @@
 # Road Map
 
+For more on the issues and their staging/ordering, check out [the issue board on waffle.io](https://waffle.io/edm00se/generator-xsp).
+
 Currently planned
 
 Near term:
