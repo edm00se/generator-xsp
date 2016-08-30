@@ -7,15 +7,66 @@ module.exports = yeoman.Base.extend({
   prompting: function () {
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the good ' + chalk.red('generator-some-app-2') + ' generator!'
+      'Welcome to the ' + chalk.red('generator-xsp') + ' generator!'
     ));
 
-    var prompts = [{
-      type: 'input',
-      name: 'name',
-      message: 'What shall we call your app?',
-      default: this.appname
-    }];
+    var prompts = [
+      {
+        type: 'input',
+        name: 'name',
+        message: 'What shall we call your app?',
+        default: this.appname
+      },
+      {
+        type: 'list',
+        name: 'basetheme',
+        message: 'What base theme will your app extend?',
+        choices: [
+          'webstandard',
+          'Bootstrap3',
+          'Bootstrap3_flat',
+          'oneui',
+          'oneuiv2',
+          'oneuiv2.1',
+          'oneuiv3.0.2'
+        ],
+        default: 'webstandard'
+      },
+      {
+        type: 'checkbox',
+        name: 'ddeplugins',
+        message: 'What plugins should be included?',
+        choices: [
+          {
+            name: 'ExtLib',
+            value: 'com.ibm.xsp.extlib.library'
+          },
+          {
+            name: 'ExtLib Relational',
+            value: 'com.ibm.xsp.extlib.relational.library'
+          },
+          {
+            name: 'ExtLib Experimental',
+            value: 'com.ibm.xsp.extlibx.library'
+          },
+          {
+            name: 'OpenNTF Domino API',
+            value: 'org.openntf.domino.xsp.XspLibrary'
+          },
+          {
+            name: 'OpenNTF JUnit4XPages',
+            value: 'org.openntf.junit4xpages.Library'
+          }
+        ],
+        default: []
+      },
+      {
+        type: 'confirm',
+        name: 'installBower',
+        message: 'Would you like to use Bower for dependency management?',
+        default: false
+      }
+    ];
 
     return this.prompt(prompts).then(function (props) {
       // To access props later use this.props.someAnswer;
@@ -31,16 +82,19 @@ module.exports = yeoman.Base.extend({
         name: this.props.name
       }
     );
-    this.fs.copyTpl(
-      this.templatePath('_bower.json'),
-      this.destinationPath('bower.json'), {
-        name: this.props.name
-      }
-    );
-    this.fs.copy(
-      this.templatePath('_bowerrc'),
-      this.destinationPath('.bowerrc')
-    );
+    // Only load Bower files if requested
+    if (this.props.installBower) {
+      this.fs.copyTpl(
+        this.templatePath('_bower.json'),
+        this.destinationPath('bower.json'), {
+          name: this.props.name
+        }
+      );
+      this.fs.copy(
+        this.templatePath('_bowerrc'),
+        this.destinationPath('.bowerrc')
+      );
+    }
   },
   // Copy ODP's application files
   app: function () {
@@ -80,9 +134,28 @@ module.exports = yeoman.Base.extend({
         name: this.props.name
       }
     );
+    this.fs.copyTpl(
+      this.templatePath('_app.theme'),
+      this.destinationPath('ODP/Resources/Themes/app.theme'), {
+        basetheme: this.props.basetheme
+      }
+    );
+    this.fs.copyTpl(
+      this.templatePath('_xsp.properties'),
+      this.destinationPath('ODP/WebContent/WEB-INF/xsp.properties'), {
+        ddeplugins: this.props.ddeplugins
+      }
+    );
   },
 
   install: function () {
-    this.installDependencies();
+    if (this.props.installBower) {
+      this.installDependencies();
+    } else {
+      this.installDependencies({
+        bower: false
+      });
+    }
   }
+
 });
