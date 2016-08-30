@@ -68,7 +68,10 @@
       "pre-commit": "npm run test"
     }
   },
-  "repository": "edm00se/generator-xsp",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edm00se/generator-xsp.git"
+  },
   "scripts": {
     "prepublish": "gulp prepublish",
     "test": "gulp",
