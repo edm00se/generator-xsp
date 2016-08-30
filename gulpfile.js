@@ -5,6 +5,7 @@ var eslint = require('gulp-eslint');
 var excludeGitignore = require('gulp-exclude-gitignore');
 var mocha = require('gulp-mocha');
 var istanbul = require('gulp-istanbul');
+var codecov = require('gulp-codecov');
 var nsp = require('gulp-nsp');
 var plumber = require('gulp-plumber');
 
@@ -43,6 +44,11 @@ gulp.task('test', ['pre-test'], function (cb) {
     .on('end', function () {
       cb(mochaErr);
     });
+
+  if (process.env.TRAVIS) {
+    gulp.src('./coverage/lcov.info')
+      .pipe(codecov());
+  }
 });
 
 gulp.task('watch', function () {
