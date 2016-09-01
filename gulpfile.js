@@ -44,11 +44,15 @@ gulp.task('test', ['pre-test'], function (cb) {
     .on('end', function () {
       cb(mochaErr);
     });
+});
 
-  if (process.env.TRAVIS) {
-    gulp.src('./coverage/lcov.info')
-      .pipe(codecov());
+gulp.task('codecov', ['test'], function () {
+  if (!process.env.CI) {
+    return;
   }
+
+  return gulp.src(path.join(__dirname, 'coverage/lcov.info'))
+    .pipe(codecov());
 });
 
 gulp.task('watch', function () {
@@ -56,4 +60,4 @@ gulp.task('watch', function () {
 });
 
 gulp.task('prepublish', ['nsp']);
-gulp.task('default', ['static', 'test']);
+gulp.task('default', ['static', 'test', 'codecov']);
