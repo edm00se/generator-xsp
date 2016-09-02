@@ -1,3 +1,25 @@
 <theme extends="<%= basetheme %>" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="platform:/plugin/com.ibm.designer.domino.stylekits/schema/stylekit.xsd" >
 	<!-- your stuff goes here! -->
+	<% if (starterresources!=false) { %>
+	<resources>
+		<metaData name="viewport" content="width=device-width, initial-scale=1.0" />
+		<styleSheet href="/app.css" />
+		<script clientSide="true" src="app.js" />
+		<script src="/app.jss" clientSide="false"></script>
+	</resources>
+	<% } %>
+
+	<!-- helpers -->
+	<control
+		override="false">
+		<name>ViewRoot</name>
+		<property>
+			<name>pageIcon</name>
+			<value>/$icon</value>
+		</property>
+		<property>
+			<name>pageTitle</name>
+			<value>#{database.title}</value>
+		</property>
+	</control>
 </theme>

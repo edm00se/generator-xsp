@@ -13,6 +13,7 @@ describe('generator-xsp:app - app with no bower', function () {
         ddeplugins: 'com.ibm.xsp.extlib.library'
       })
       .withPrompts({
+        starterResources: true,
         installBower: false
       })
       .toPromise();
@@ -23,7 +24,10 @@ describe('generator-xsp:app - app with no bower', function () {
       'ODP/.project',
       'ODP/AppProperties/database.properties',
       'ODP/plugin.xml',
-      'ODP/Resources/IconNote'
+      'ODP/Resources/IconNote',
+      'ODP/Resources/StyleSheets/app.css',
+      'ODP/Code/ScriptLibraries/app.js',
+      'ODP/Code/ScriptLibraries/app.jss'
     ]);
     assert.noFile([
       'bower.json'
@@ -40,18 +44,22 @@ describe('generator-xsp:app - app with bower', function () {
         ddeplugins: 'com.ibm.xsp.extlib.library'
       })
       .withPrompts({
+        starterResources: true,
         installBower: true
       })
       .toPromise();
   });
 
-  it('creates base ODP files with bower support', function () {
+  it('creates base ODP files with bower support and starter theme components', function () {
     assert.file([
       'ODP/.project',
       'ODP/AppProperties/database.properties',
       'ODP/plugin.xml',
       'ODP/Resources/IconNote',
-      'bower.json'
+      'bower.json',
+      'ODP/Resources/StyleSheets/app.css',
+      'ODP/Code/ScriptLibraries/app.js',
+      'ODP/Code/ScriptLibraries/app.jss'
     ]);
   });
 });
