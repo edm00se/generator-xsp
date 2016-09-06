@@ -1,0 +1,10 @@
+{
+  "extends": "xo-space",
+    "env": {
+      "mocha": true,
+      "node": true
+    },
+    "options": {
+      "format": "node_modules/eslint-formatter-pretty"
+    }
+}
