@@ -36,8 +36,7 @@ describe('generator-xsp:app - app with bower', function () {
     return helpers.run(path.join(__dirname, '../generators/app'))
       .withOptions({
         name: testProjName,
-        basetheme: 'Bootstrap3',
-        ddeplugins: 'com.ibm.xsp.extlib.library'
+        basetheme: 'Bootstrap3'
       })
       .withPrompts({
         installBower: true
