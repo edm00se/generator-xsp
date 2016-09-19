@@ -9,10 +9,10 @@ describe('generator-xsp:app - app with no bower', function () {
     return helpers.run(path.join(__dirname, '../generators/app'))
       .withOptions({
         name: testProjName,
-        basetheme: 'webstandard',
         ddeplugins: 'com.ibm.xsp.extlib.library'
       })
       .withPrompts({
+        basetheme: 'webstandard',
         installBower: false
       })
       .toPromise();
@@ -35,10 +35,10 @@ describe('generator-xsp:app - app with bower', function () {
   before(function () {
     return helpers.run(path.join(__dirname, '../generators/app'))
       .withOptions({
-        name: testProjName,
-        basetheme: 'Bootstrap3'
+        name: testProjName
       })
       .withPrompts({
+        basetheme: 'Bootstrap3',
         installBower: true
       })
       .toPromise();
