@@ -9,10 +9,10 @@ describe('generator-xsp:app - app with no bower but with starter theme component
     return helpers.run(path.join(__dirname, '../generators/app'))
       .withOptions({
         name: testProjName,
-        basetheme: 'webstandard',
         ddeplugins: 'com.ibm.xsp.extlib.library'
       })
       .withPrompts({
+        basetheme: 'webstandard',
         starterResources: true,
         installBower: false
       })
@@ -27,7 +27,8 @@ describe('generator-xsp:app - app with no bower but with starter theme component
       'ODP/Resources/IconNote',
       'ODP/Resources/StyleSheets/app.css',
       'ODP/Code/ScriptLibraries/app.js',
-      'ODP/Code/ScriptLibraries/app.jss'
+      'ODP/Code/ScriptLibraries/app.jss',
+      'ODP/Resources/IconNote'
     ]);
     assert.noFile([
       'bower.json'
@@ -44,6 +45,7 @@ describe('generator-xsp:app - app with bower', function () {
         ddeplugins: 'com.ibm.xsp.extlib.library'
       })
       .withPrompts({
+        basetheme: 'Bootstrap3',
         starterResources: false,
         installBower: true
       })

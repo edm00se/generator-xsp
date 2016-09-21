@@ -49,7 +49,7 @@ gulp.task('test', ['pre-test'], function (cb) {
 
 gulp.task('codecov', function () {
   if (process.env.CI) {
-    return gulp.src(path.join([__dirname, '!generators/**/templates/**/*.js'], 'coverage/lcov.info'))
+    return gulp.src(path.join(__dirname, 'coverage/lcov.info'))
       .pipe(codecov());
   }
   return;

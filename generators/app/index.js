@@ -41,7 +41,14 @@ module.exports = yeoman.Base.extend({
       {
         type: 'checkbox',
         name: 'ddeplugins',
-        message: 'What plugins should be included?',
+        message: function (answerOb) {
+          var str = 'What plugins should be included?';
+          var condition = (answerOb.basetheme === 'Bootstrap3' || answerOb.basetheme === 'Bootstrap3_flat');
+          if (condition) {
+            str += '\n  🍰  ExtLib pre-selected in order to extend ' + answerOb.basetheme;
+          }
+          return str;
+        },
         choices: [
           {
             name: 'ExtLib',
@@ -64,7 +71,18 @@ module.exports = yeoman.Base.extend({
             value: 'org.openntf.junit4xpages.Library'
           }
         ],
-        default: []
+        default: function (answerOb) {
+          var altAr = [];
+          switch (answerOb.basetheme) {
+            case 'Bootstrap3':
+            case 'Bootstrap3_flat':
+              altAr.push('com.ibm.xsp.extlib.library');
+              break;
+            default:
+              break;
+          }
+          return altAr;
+        }
       },
       {
         type: 'confirm',
