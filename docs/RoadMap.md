@@ -7,7 +7,7 @@ Currently planned
 Near term:
 
 - [x] default app Theme inclusion
-- [ ] starter CSS and JS files
+- [x] starter CSS and JS files
 - [ ] possibly automate pulling from XPages boilerplate resources, such as a `JSFUtil` class, etc.
 
 Long term:
