@@ -2,6 +2,7 @@
 var path = require('path');
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
+var eslintConfig = require('./.eslintrc.json');
 var excludeGitignore = require('gulp-exclude-gitignore');
 var mocha = require('gulp-mocha');
 var istanbul = require('gulp-istanbul');
@@ -10,9 +11,9 @@ var nsp = require('gulp-nsp');
 var plumber = require('gulp-plumber');
 
 gulp.task('static', function () {
-  return gulp.src('**/*.js')
+  return gulp.src(['**/*.js', '!generators/**/templates/**/*.js'])
     .pipe(excludeGitignore())
-    .pipe(eslint())
+    .pipe(eslint(eslintConfig))
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
@@ -22,7 +23,7 @@ gulp.task('nsp', function (cb) {
 });
 
 gulp.task('pre-test', function () {
-  return gulp.src('generators/**/*.js')
+  return gulp.src(['generators/**/*.js', '!generators/**/templates/**/*.js'])
     .pipe(excludeGitignore())
     .pipe(istanbul({
       includeUntested: true,
@@ -46,13 +47,12 @@ gulp.task('test', ['pre-test'], function (cb) {
     });
 });
 
-gulp.task('codecov', ['test'], function () {
-  if (!process.env.CI) {
-    return;
+gulp.task('codecov', function () {
+  if (process.env.CI) {
+    return gulp.src(path.join(__dirname, 'coverage/lcov.info'))
+      .pipe(codecov());
   }
-
-  return gulp.src(path.join(__dirname, 'coverage/lcov.info'))
-    .pipe(codecov());
+  return;
 });
 
 gulp.task('watch', function () {
