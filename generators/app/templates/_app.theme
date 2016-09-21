@@ -1,6 +1,6 @@
 <theme extends="<%= basetheme %>" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="platform:/plugin/com.ibm.designer.domino.stylekits/schema/stylekit.xsd" >
 	<!-- your stuff goes here! -->
-	<% if (starterresources!=false) { %>
+	<% if (starterResources!=false) { %>
 	<resources>
 		<metaData name="viewport" content="width=device-width, initial-scale=1.0" />
 		<styleSheet href="/app.css" />

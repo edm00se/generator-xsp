@@ -11,7 +11,7 @@ var nsp = require('gulp-nsp');
 var plumber = require('gulp-plumber');
 
 gulp.task('static', function () {
-  return gulp.src('**/*.js')
+  return gulp.src(['**/*.js', '!generators/**/templates/**/*.js'])
     .pipe(excludeGitignore())
     .pipe(eslint(eslintConfig))
     .pipe(eslint.format())
@@ -23,7 +23,7 @@ gulp.task('nsp', function (cb) {
 });
 
 gulp.task('pre-test', function () {
-  return gulp.src('generators/**/*.js')
+  return gulp.src(['generators/**/*.js', '!generators/**/templates/**/*.js'])
     .pipe(excludeGitignore())
     .pipe(istanbul({
       includeUntested: true,
@@ -49,7 +49,7 @@ gulp.task('test', ['pre-test'], function (cb) {
 
 gulp.task('codecov', function () {
   if (process.env.CI) {
-    return gulp.src(path.join(__dirname, 'coverage/lcov.info'))
+    return gulp.src(path.join([__dirname, '!generators/**/templates/**/*.js'], 'coverage/lcov.info'))
       .pipe(codecov());
   }
   return;

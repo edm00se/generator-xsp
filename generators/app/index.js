@@ -34,7 +34,7 @@ module.exports = yeoman.Base.extend({
       },
       {
         type: 'confirm',
-        name: 'starterresources',
+        name: 'starterResources',
         message: 'Would you like to include some starter resources in your theme (app file for CSS, JS, SSJS)?',
         default: true
       },
@@ -144,7 +144,7 @@ module.exports = yeoman.Base.extend({
       this.templatePath('_app.theme'),
       this.destinationPath('ODP/Resources/Themes/app.theme'), {
         basetheme: this.props.basetheme,
-        starterresources: this.props.starterresources
+        starterResources: this.props.starterResources
       }
     );
     this.fs.copyTpl(
@@ -153,7 +153,7 @@ module.exports = yeoman.Base.extend({
         ddeplugins: this.props.ddeplugins
       }
     );
-    if (this.props.starterresources === true) {
+    if (this.props.starterResources === true) {
       this.fs.copyTpl(
         this.templatePath('_app.css'),
         this.destinationPath('ODP/Resources/StyleSheets/app.css')
