@@ -9,7 +9,7 @@ module.exports = yeoman.Base.extend({
       {
         name: 'visibility',
         message: `Specify the class visibility
-          https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html`,
+          ref: https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html`,
         type: 'list',
         choices: [
           {

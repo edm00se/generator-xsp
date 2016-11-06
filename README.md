@@ -6,7 +6,7 @@
 
 ## Requirements
 
-Node v4 LTS, v5, or v6 stable is required. This *should* work with iojs v3, but is known to fail on node v0.12 and v0.10 ([refs issue #3](https://github.com/edm00se/generator-xsp/issues/3)). If, for some reason, you *need* to make this work on older versions of node, as of [v0.2.0](https://github.com/edm00se/generator-xsp/releases/tag/v0.2.0) you should be able to fork this repo and remove the use of [update-notifier](https://www.npmjs.com/package/update-notifier). It claims to work w/ node >= v0.10, but my experience shows otherwise. But hey, if you're using something older than v4 LTS, what are you up to anyway?
+Node v4.x LTS, v6.9.0(+) LTS, or v7 stable is required. This *should* work with iojs v3 (or node v5 or v6.x), but is known to fail on node v0.12 and v0.10 ([refs issue #3](https://github.com/edm00se/generator-xsp/issues/3)). If, for some reason, you *need* to make this work on older versions of node, as of [v0.2.0](https://github.com/edm00se/generator-xsp/releases/tag/v0.2.0) you should be able to fork this repo and remove the use of [update-notifier](https://www.npmjs.com/package/update-notifier). It claims to work w/ node >= v0.10, but my experience shows otherwise. But hey, if you're using something older than v4 LTS, what are you up to anyway?
 
 ## Installation
 
@@ -41,6 +41,7 @@ Available are:
 
 * XPages, `yo xsp:xpage`
 * Custom Controls, `yo xsp:cc`
+* Java `Class`es, `yo xsp:class`
 * more coming soon!
 
 ### Optional Inline Naming
@@ -87,10 +88,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 [npm-license]: https://img.shields.io/npm/l/generator-xsp.svg
 [travis-image]: https://travis-ci.org/edm00se/generator-xsp.svg?branch=master
 [travis-url]: https://travis-ci.org/edm00se/generator-xsp
-[daviddm-image]: https://david-dm.org/edm00se/generator-xsp.svg?theme=shields.io
+[daviddm-image]: https://david-dm.org/edm00se/generator-xsp/status.svg
 [daviddm-url]: https://david-dm.org/edm00se/generator-xsp
 [codecov-image]: https://codecov.io/github/edm00se/generator-xsp/coverage.svg
 [codecov-url]: https://codecov.io/github/edm00se/generator-xsp
+[codacy-coverage-image]: https://img.shields.io/codacy/coverage/c44df2d9c89a4809896914fd1a40bedd.svg
 [codacy-image]: https://api.codacy.com/project/badge/grade/d2ab498482af4a6fae1f72a39275b36c
 [codacy-url]: https://www.codacy.com/app/edm00se/generator-xsp
 [semantic-release-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
