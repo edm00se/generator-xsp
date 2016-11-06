@@ -7,7 +7,7 @@ module.exports = yeoman.Base.extend({
     var prompts = [{
       type: 'input',
       name: 'ccname',
-      message: 'What shall we call your new XPage?'
+      message: 'What shall we call your new Custom Control?'
     }];
 
     return this.prompt(prompts).then(function (props) {
