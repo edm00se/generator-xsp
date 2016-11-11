@@ -1,6 +1,8 @@
 'use strict';
 var yeoman = require('yeoman-generator');
 var _ = require('lodash');
+var chalk = require('chalk');
+var yosay = require('yosay');
 
 module.exports = yeoman.Base.extend({
   prompting: function () {
@@ -27,10 +29,12 @@ module.exports = yeoman.Base.extend({
           name: tmpName
         }
       );
+
+      this.log(yosay(chalk.red('Done') + ` creating the ${this.props.ccname} Custom Control.`));
     }
   },
 
   install: function () {
-    this.installDependencies();
+    // this.installDependencies();
   }
 });
