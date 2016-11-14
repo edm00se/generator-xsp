@@ -2,6 +2,8 @@
 
 var path = require('path');
 var yeoman = require('yeoman-generator');
+var chalk = require('chalk');
+var yosay = require('yosay');
 
 module.exports = yeoman.Base.extend({
   prompting: function () {
@@ -29,7 +31,7 @@ module.exports = yeoman.Base.extend({
             value: 'private'
           }
         ],
-        defaults: 'public'
+        default: 'public'
       },
       {
         name: 'name',
@@ -79,6 +81,8 @@ module.exports = yeoman.Base.extend({
           serializable: serialize
         }
       );
+
+      this.log(yosay(chalk.red('Done') + ` creating the ${this.props.name} Class.`));
     }
   },
 

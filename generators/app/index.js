@@ -2,9 +2,13 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+const updateNotifier = require('update-notifier');
+const pkg = require('../../package.json');
 
 module.exports = yeoman.Base.extend({
   prompting: function () {
+    updateNotifier({pkg}).notify();
+
     // Have Yeoman greet the user.
     this.log(yosay(
       'Welcome to the ' + chalk.red('generator-xsp') + ' generator!'
