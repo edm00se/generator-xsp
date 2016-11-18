@@ -12,10 +12,14 @@ node_js:
   - v4
 before_install:
   - npm i -g npm@^3.0.0
+install:
+  - npm install -g codecov
 before_script:
   - npm prune
 script:
   - npm run test
+  - istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec
+  - codecov
 after_success:
   - npm run semantic-release
 branches:
