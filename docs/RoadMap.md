@@ -15,5 +15,5 @@ Long term:
 - [ ] config of **common** XSP properties
 - [x] config inclusion of `ExtLib` (assumes dependency already on server), and/or other/given plugins to enable for NSF
 - [x] specify the Theme the app theme will extend (Bootstrap 3, oneui, webstandard, etc.)
-- [ ] scaffold basic Java packages and classes
-- [ ] scaffold managed bean (at specified *Scope)
+- [x] scaffold basic Java packages and classes
+- [x] scaffold managed bean (at specified *Scope)
