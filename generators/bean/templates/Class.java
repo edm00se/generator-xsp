@@ -18,7 +18,11 @@ public class <%= name %> implements Serializable {
   }
 
   public statc <%= name %> getCurrentInstance(){
+    <% if (extlib) { %>
     return (<%= name %>) ExtLibUtil.resolveVariable(FacesContext.getCurrentInstance(), <%= name %>.myBeanName);
+    <% } -%><% if (!extlib) { %>
+    return (<%= name %>) FacesContext.getCurrentInstance().getApplication().getVariableResolver().resolveVariable(FacesContext.getCurrentInstance(), <%= name %>.myBeanName);
+    <% } -%>
   }
 
 }
