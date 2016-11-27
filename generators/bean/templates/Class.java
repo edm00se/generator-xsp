@@ -1,9 +1,9 @@
 <% if (namespace || package) { %>
 package <% if (namespace) { %><%= namespace %><% } %><% if (package) { %><%= package %><% } %>;<% } %>
 
-import java.io.Serializable;
+import java.io.Serializable;<% if (extlib) { %>
 
-import com.ibm.xsp.extlib.util.ExtLibUtil;
+import com.ibm.xsp.extlib.util.ExtLibUtil;<% } %>
 
 /**
  * <%= name %> class, configured as a managed bean in <%= scope %>.
