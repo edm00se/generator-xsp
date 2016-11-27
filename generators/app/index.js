@@ -104,6 +104,11 @@ module.exports = yeoman.Base.extend({
 
   // Copy the configuration files
   config: function () {
+    if (this.props.ddeplugins.indexOf('com.ibm.xsp.extlib.library') > -1) {
+      this.config.set('useExtLib', true);
+    } else {
+      this.config.set('useExtLib', false);
+    }
     this.fs.copyTpl(
       this.templatePath('_package.json'),
       this.destinationPath('package.json'), {

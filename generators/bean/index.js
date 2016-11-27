@@ -1,10 +1,11 @@
 'use strict';
 
-var fs = require('fs');
-var path = require('path');
-var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
+const fs = require('fs');
+const path = require('path');
+const yeoman = require('yeoman-generator');
+const chalk = require('chalk');
+const yosay = require('yosay');
+const cheerio = require('cheerio');
 
 module.exports = yeoman.Base.extend({
   prompting: function () {
@@ -66,6 +67,8 @@ module.exports = yeoman.Base.extend({
 
       var namespace = (this.props.namespace || '').replace(/\./g, '/');
 
+      const exlib = this.config.get('useExtLib') || false;
+
       this.fs.copyTpl(
         this.templatePath('Class.java'),
         this.destinationPath(path.join('ODP/Code/Java', namespace, this.props.dir, this.props.name + '.java')), {
@@ -73,7 +76,8 @@ module.exports = yeoman.Base.extend({
           namespace: namespace,
           name: this.props.name,
           lowerCaseName: lCaseName,
-          scope: scope
+          scope: scope,
+          extlib: exlib
         }
       );
 
@@ -93,15 +97,15 @@ module.exports = yeoman.Base.extend({
   You should de-conflict your faces-config.xml file manually.`
           ));
         } else {
+          let $ = cheerio.load(data, {xmlMode: true});
           var add = `  <managed-bean>
     <managed-bean-name>${lCaseName}Bean</managed-bean-name>
     <managed-bean-scope>${scope}</managed-bean-scope>
-    <managed-bean-class>${pkg + '.' + name}</managed-bean-class>
+    <managed-bean-class>${pkg ? pkg + '.' : ''}${name}</managed-bean-class>
   </managed-bean>
-</faces-config>
 `;
-          var fConfOb = data.split('</faces-config>')[0] + add;
-          fs.writeFile(path.join(projRoot, 'ODP/WebContent/WEB-INF/faces-config.xml'), fConfOb, 'utf8', function (err) {
+          $('faces-config').append(add);
+          fs.writeFile(path.join(projRoot, 'ODP/WebContent/WEB-INF/faces-config.xml'), $.xml(), 'utf8', function (err) {
             if (err) {
               throw err;
             }
