@@ -13,7 +13,7 @@ import com.ibm.xsp.extlib.util.ExtLibUtil;<% } %>
 public class <%= name %> implements Serializable {
 
   private static final long serialVersionUID = 1L;
-  private static final String myBeanName = "<%= lowerCaseName %>Bean";
+  private static final String myBeanName = "<%= camelName %>Bean";
 
   public <%= name %>(){
     // constructor intentionally left blank

@@ -6,6 +6,7 @@ const yeoman = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
 const cheerio = require('cheerio');
+const changeCase = require('change-case');
 
 module.exports = yeoman.Base.extend({
   prompting: function () {
@@ -63,7 +64,7 @@ module.exports = yeoman.Base.extend({
       var pkg = this.props.package;
       this.props.dir = parts.join('/');
       this.props.name = name;
-      var lCaseName = this.props.name.toLowerCase();
+      var lCaseName = changeCase.lowerCase(this.props.name);
 
       var namespace = (this.props.namespace || '').replace(/\./g, '/');
 
@@ -76,6 +77,7 @@ module.exports = yeoman.Base.extend({
           namespace: namespace,
           name: this.props.name,
           lowerCaseName: lCaseName,
+          camelName: changeCase.camelCase(name),
           scope: scope,
           extlib: exlib
         }
@@ -99,7 +101,7 @@ module.exports = yeoman.Base.extend({
         } else {
           let $ = cheerio.load(data, {xmlMode: true});
           var add = `  <managed-bean>
-    <managed-bean-name>${lCaseName}Bean</managed-bean-name>
+    <managed-bean-name>${changeCase.camelCase(name)}Bean</managed-bean-name>
     <managed-bean-scope>${scope}</managed-bean-scope>
     <managed-bean-class>${pkg ? pkg + '.' : ''}${name}</managed-bean-class>
   </managed-bean>
