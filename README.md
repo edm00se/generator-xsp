@@ -6,7 +6,7 @@
 
 ## Requirements
 
-Node v4.x LTS, v6.9.0(+) LTS, or v7 stable is required. This *should* work with iojs v3 (or node v5 or v6.x), but is known to fail on node v0.12 and v0.10 ([refs issue #3](https://github.com/edm00se/generator-xsp/issues/3)). If, for some reason, you *need* to make this work on older versions of node, as of [v0.2.0](https://github.com/edm00se/generator-xsp/releases/tag/v0.2.0) you should be able to fork this repo and remove the use of [update-notifier](https://www.npmjs.com/package/update-notifier). It claims to work w/ node >= v0.10, but my experience shows otherwise. But hey, if you're using something older than v4 LTS, what are you up to anyway?
+Node v4.x LTS, v6.9.0(+) LTS, or v7 stable is required. This *should* work with iojs v3 (or node v5 or v6.x), but is known to fail on node v0.12 and v0.10 ([refs issue #3](https://github.com/edm00se/generator-xsp/issues/3)).
 
 ## Installation
 

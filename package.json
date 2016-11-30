@@ -13,7 +13,8 @@
   ],
   "main": "generators/index.js",
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=4.5.0",
+    "npm": ">=3.0.0"
   },
   "keywords": [
     "xpages",

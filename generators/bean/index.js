@@ -7,9 +7,12 @@ const chalk = require('chalk');
 const yosay = require('yosay');
 const cheerio = require('cheerio');
 const changeCase = require('change-case');
+const updateNotifier = require('update-notifier');
+const pkg = require('../../package.json');
 
 module.exports = yeoman.Base.extend({
   prompting: function () {
+    updateNotifier({pkg}).notify();
     var prompts = [
       {
         name: 'name',

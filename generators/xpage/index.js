@@ -3,9 +3,12 @@ var yeoman = require('yeoman-generator');
 var _ = require('lodash');
 var chalk = require('chalk');
 var yosay = require('yosay');
+const updateNotifier = require('update-notifier');
+const pkg = require('../../package.json');
 
 module.exports = yeoman.Base.extend({
   prompting: function () {
+    updateNotifier({pkg}).notify();
     var prompts = [{
       type: 'input',
       name: 'xpagename',

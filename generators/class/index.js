@@ -4,9 +4,12 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+const updateNotifier = require('update-notifier');
+const pkg = require('../../package.json');
 
 module.exports = yeoman.Base.extend({
   prompting: function () {
+    updateNotifier({pkg}).notify();
     var prompts = [
       {
         name: 'visibility',
