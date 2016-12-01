@@ -39,10 +39,11 @@ A sub-generator is one that creates/scaffolds a _part_ or _parts_ of an _app_. B
 
 Available are:
 
-* XPages, `yo xsp:xpage`
-* Custom Controls, `yo xsp:cc`
-* Java `Class`es, `yo xsp:class`
-* more coming soon!
+- XPages, `yo xsp:xpage`
+- Custom Controls, `yo xsp:cc`
+- Java `Class`es, `yo xsp:class`
+- Java `Class`es configured as beans, `yo xsp:bean`
+- more coming soon!
 
 ### Optional Inline Naming
 
