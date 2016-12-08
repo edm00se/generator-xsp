@@ -28,22 +28,22 @@ module.exports = yeoman.Base.extend({
         choices: [
           {
             name: 'request',
-            value: 'requestScope'
+            value: 'request'
           },
           {
             name: 'view',
-            value: 'viewScope'
+            value: 'view'
           },
           {
             name: 'session',
-            value: 'sessionScope'
+            value: 'session'
           },
           {
             name: 'application',
-            value: 'applicationScope'
+            value: 'application'
           }
         ],
-        default: 'viewScope'
+        default: 'view'
       }
     ];
 
