@@ -15,7 +15,8 @@ describe('generator-xsp:app', function () {
         .withPrompts({
           basetheme: 'webstandard',
           starterResources: true,
-          installBower: false
+          installBower: false,
+          useNpm: true
         })
         .toPromise();
     });
@@ -29,7 +30,8 @@ describe('generator-xsp:app', function () {
         'ODP/Resources/StyleSheets/app.css',
         'ODP/Code/ScriptLibraries/app.js',
         'ODP/Code/ScriptLibraries/app.jss',
-        'ODP/Resources/IconNote'
+        'ODP/Resources/IconNote',
+        'package.json'
       ]);
       assert.noFile([
         'bower.json'

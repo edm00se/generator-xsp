@@ -4,6 +4,7 @@ var chalk = require('chalk');
 var yosay = require('yosay');
 const updateNotifier = require('update-notifier');
 const pkg = require('../../package.json');
+const changeCase = require('change-case');
 
 module.exports = yeoman.Base.extend({
   prompting: function () {
@@ -93,6 +94,12 @@ module.exports = yeoman.Base.extend({
         name: 'installBower',
         message: 'Would you like to use Bower for dependency management?',
         default: false
+      },
+      {
+        type: 'confirm',
+        name: 'useNpm',
+        message: 'Include npm scripts (clean to perform a la DORA), etc.?',
+        default: true
       }
     ];
 
@@ -109,12 +116,19 @@ module.exports = yeoman.Base.extend({
     } else {
       this.config.set('useExtLib', false);
     }
-    this.fs.copyTpl(
-      this.templatePath('_package.json'),
-      this.destinationPath('package.json'), {
-        name: this.props.name
-      }
-    );
+    /* istanbul ignore else */
+    if (this.props.useNpm) {
+      this.fs.copyTpl(
+        this.templatePath('_package.json'),
+        this.destinationPath('package.json'), {
+          name: changeCase.paramCase(this.props.name)
+        }
+      );
+      this.fs.copy(
+        this.templatePath('_gitignore'),
+        this.destinationPath('.gitignore')
+      );
+    }
     // Only load Bower files if requested
     if (this.props.installBower) {
       this.fs.copyTpl(
@@ -197,13 +211,19 @@ module.exports = yeoman.Base.extend({
   },
 
   install: function () {
+    let depOpt = {
+      bower: false,
+      npm: false
+    };
+    /* istanbul ignore else */
     if (this.props.installBower) {
-      this.installDependencies();
-    } else {
-      this.installDependencies({
-        bower: false
-      });
+      depOpt.bower = true;
     }
+    /* istanbul ignore else */
+    if (this.props.useNpm) {
+      depOpt.npm = true;
+    }
+    this.installDependencies(depOpt);
   }
 
 });
