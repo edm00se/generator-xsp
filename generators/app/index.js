@@ -35,13 +35,15 @@ module.exports = yeoman.Base.extend({
           'oneuiv2.1',
           'oneuiv3.0.2'
         ],
-        default: 'webstandard'
+        default: 'webstandard',
+        store: true
       },
       {
         type: 'confirm',
         name: 'starterResources',
         message: 'Would you like to include some starter resources in your theme (app file for CSS, JS, SSJS)?',
-        default: true
+        default: true,
+        store: true
       },
       {
         type: 'checkbox',
@@ -87,19 +89,22 @@ module.exports = yeoman.Base.extend({
               break;
           }
           return altAr;
-        }
+        },
+        store: true
       },
       {
         type: 'confirm',
         name: 'installBower',
         message: 'Would you like to use Bower for dependency management?',
-        default: false
+        default: false,
+        store: true
       },
       {
         type: 'confirm',
         name: 'useNpm',
         message: 'Include npm scripts (clean to perform a la DORA), etc.?',
-        default: true
+        default: true,
+        store: true
       }
     ];
 
