@@ -1,13 +1,13 @@
 'use strict';
-var yeoman = require('yeoman-generator');
-var _ = require('lodash');
-var chalk = require('chalk');
-var yosay = require('yosay');
+const Generator = require('yeoman-generator');
+const _ = require('lodash');
+const chalk = require('chalk');
+const yosay = require('yosay');
 const updateNotifier = require('update-notifier');
 const pkg = require('../../package.json');
 
-module.exports = yeoman.Base.extend({
-  prompting: function () {
+module.exports = class extends Generator {
+  prompting() {
     updateNotifier({pkg}).notify();
     var prompts = [{
       type: 'input',
@@ -19,25 +19,23 @@ module.exports = yeoman.Base.extend({
       // To access props later use this.props.someAnswer;
       this.props = props;
     }.bind(this));
-  },
+  }
 
   // Writing Logic
-  writing: {
+  writing() {
     // Copy the configuration files
-    config: function () {
-      var tmpName = _.camelCase(this.ccname) || this.props.ccname;
-      this.fs.copyTpl(
-        this.templatePath('_some.xsp'),
-        this.destinationPath('ODP/CustomControls/' + tmpName + '.xsp'), {
-          name: tmpName
-        }
-      );
+    var tmpName = _.camelCase(this.ccname) || this.props.ccname;
+    this.fs.copyTpl(
+      this.templatePath('_some.xsp'),
+      this.destinationPath('ODP/CustomControls/' + tmpName + '.xsp'), {
+        name: tmpName
+      }
+    );
 
-      this.log(yosay(chalk.red('Done') + ` creating the ${this.props.ccname} Custom Control.`));
-    }
-  },
+    this.log(yosay(chalk.red('Done') + ` creating the ${this.props.ccname} Custom Control.`));
+  }
 
-  install: function () {
+  install() {
     // this.installDependencies();
   }
-});
+};

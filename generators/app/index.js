@@ -1,13 +1,13 @@
 'use strict';
-var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
+const Generator = require('yeoman-generator');
+const chalk = require('chalk');
+const yosay = require('yosay');
 const updateNotifier = require('update-notifier');
 const pkg = require('../../package.json');
 const changeCase = require('change-case');
 
-module.exports = yeoman.Base.extend({
-  prompting: function () {
+module.exports = class extends Generator {
+  prompting() {
     updateNotifier({pkg}).notify();
 
     // Have Yeoman greet the user.
@@ -15,7 +15,7 @@ module.exports = yeoman.Base.extend({
       'Welcome to the ' + chalk.red('generator-xsp') + ' generator!'
     ));
 
-    var prompts = [
+    const prompts = [
       {
         type: 'input',
         name: 'name',
@@ -112,10 +112,10 @@ module.exports = yeoman.Base.extend({
       // To access props later use this.props.someAnswer;
       this.props = props;
     }.bind(this));
-  },
+  }
 
   // Copy the configuration files
-  config: function () {
+  config() {
     if (this.props.ddeplugins.indexOf('com.ibm.xsp.extlib.library') > -1) {
       this.config.set('useExtLib', true);
     } else {
@@ -147,9 +147,10 @@ module.exports = yeoman.Base.extend({
         this.destinationPath('.bowerrc')
       );
     }
-  },
+  }
+
   // Copy ODP's application files
-  app: function () {
+  app() {
     // Main ODP
     this.fs.copy(
       this.templatePath('ODP'),
@@ -213,9 +214,9 @@ module.exports = yeoman.Base.extend({
         this.destinationPath('ODP/Code/ScriptLibraries/app.jss')
       );
     }
-  },
+  }
 
-  install: function () {
+  install() {
     let depOpt = {
       bower: false,
       npm: false
@@ -231,4 +232,4 @@ module.exports = yeoman.Base.extend({
     this.installDependencies(depOpt);
   }
 
-});
+};
