@@ -64,19 +64,19 @@ module.exports = yeoman.Base.extend({
             xmlMode: true
           });
           const add = ` <xe\\:restService
-		id="${opt.svcName}"
-		pathInfo="${opt.path}"
-		state="false">
-		<xe\\:this.service>
-			<xe\\:customRestService
-				serviceBean="${opt.serviceBeanPkgClass}ServiceBean"
-				requestContentType="${opt.type}"
-				contentType="${opt.type}">
-			</xe\\:customRestService>
-		</xe\\:this.service>
-  </xe\\:restService>`;
+	id="${opt.svcName}"
+	pathInfo="${opt.path}"
+	state="false">
+	<xe\\:this.service>
+		<xe\\:customRestService
+			serviceBean="${opt.serviceBeanPkgClass}ServiceBean"
+			requestContentType="${opt.type}"
+			contentType="${opt.type}">
+		</xe\\:customRestService>
+	</xe\\:this.service>
+</xe\\:restService>`;
           $('xp\\:view').append(add);
-          fs.writeFile(vm.destinationPath('ODP/XPages/api.xsp'), $.xml(), 'utf8', function (er) {
+          fs.writeFile(vm.destinationPath('ODP/XPages/api.xsp'), $.xml().replace(/\\/gmi, ''), 'utf8', function (er) {
             if (er) {
               throw er;
             }
