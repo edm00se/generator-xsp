@@ -4,6 +4,8 @@
 
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage Status][codecov-image]][codecov-url] [![Codacy Badge][codacy-image]][codacy-url] [![semantic-release][semantic-release-image]][semantic-release-url] [![npm][npm-license]][npm-url] [![PRs Welcome][prs-badge]][prs] [![Roadmap][roadmap-badge]][roadmap] [![Issues][waffle-img]][waffle-link]
 
+[![npm badge](https://nodei.co/npm/generator-xsp.png?downloads=true&downloadRank=true&stars=true)](http://npm.im/generator-xsp)
+
 ## Requirements
 
 Node v4.x LTS, v6.9.0(+) LTS, or v7 stable is required. This *should* work with iojs v3 (or node v5 or v6.x), but is known to fail on node v0.12 and v0.10 ([refs issue #3](https://github.com/edm00se/generator-xsp/issues/3)).

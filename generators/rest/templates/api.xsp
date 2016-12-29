@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view
+	xmlns:xp="http://www.ibm.com/xsp/core"
+	xmlns:xe="http://www.ibm.com/xsp/coreex"
+	createForm="false"
+	viewState="nostate">
+	<xe:restService
+		id="<%= svcName %>"
+		pathInfo="<%= path %>"
+		state="false">
+		<xe:this.service>
+			<xe:customRestService
+				serviceBean="<%= serviceBeanPkgClass %>ServiceBean"
+				requestContentType="<%= type %>"
+				contentType="<%= type %>">
+			</xe:customRestService>
+		</xe:this.service>
+	</xe:restService>
+</xp:view>
