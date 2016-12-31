@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "commitizen": "2.9.3",
+    "coveralls": "2.11.15",
     "cz-conventional-changelog": "1.2.0",
     "eslint": "3.12.2",
     "eslint-config-xo-space": "0.15.0",
@@ -70,7 +71,8 @@
     "test": "gulp",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "precommit": "npm run test",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "coveralls": "istanbul check-coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js || true"
   },
   "license": "MIT"
 }
