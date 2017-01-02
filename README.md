@@ -45,6 +45,7 @@ Available are:
 - Custom Controls, `yo xsp:cc`
 - Java `Class`es, `yo xsp:class`
 - Java `Class`es configured as beans, `yo xsp:bean`
+- a `CustomRestService` bean and integration into an `api.xsp` XPage via `xe:restService`, `yo xsp:rest`
 - more coming soon!
 
 ### Optional Inline Naming

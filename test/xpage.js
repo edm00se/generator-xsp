@@ -1,8 +1,8 @@
 'use strict';
-var path = require('path');
-var assert = require('yeoman-assert');
-var helpers = require('yeoman-test');
-var testFileName = 'foo';
+const path = require('path');
+const assert = require('yeoman-assert');
+const helpers = require('yeoman-test');
+const testFileName = 'foo';
 
 describe('generator-xsp:xpage', function () {
   before(function () {

@@ -70,6 +70,7 @@
   "scripts": {
     "prepublish": "gulp prepublish",
     "test": "gulp",
+    "watch": "gulp watch",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "precommit": "npm run test",
     "commit": "git-cz",
