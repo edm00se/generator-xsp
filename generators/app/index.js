@@ -78,15 +78,11 @@ module.exports = class extends Generator {
             value: 'org.openntf.junit4xpages.Library'
           }
         ],
-        default: function (answerOb) {
+        default: /* istanbul ignore next */
+        function (answerOb) {
           var altAr = [];
-          switch (answerOb.basetheme) {
-            case 'Bootstrap3':
-            case 'Bootstrap3_flat':
-              altAr.push('com.ibm.xsp.extlib.library');
-              break;
-            default:
-              break;
+          if (answerOb.basetheme === 'Bootstrap3' || answerOb.baseTheme === 'Bootstrap3_flat') {
+            altAr.push('com.ibm.xsp.extlib.library');
           }
           return altAr;
         },
