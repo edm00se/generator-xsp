@@ -1,14 +1,14 @@
 'use strict';
 
-var path = require('path');
-var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
+const path = require('path');
+const Generator = require('yeoman-generator');
+const chalk = require('chalk');
+const yosay = require('yosay');
 const updateNotifier = require('update-notifier');
 const pkg = require('../../package.json');
 
-module.exports = yeoman.Base.extend({
-  prompting: function () {
+module.exports = class extends Generator {
+  prompting() {
     updateNotifier({pkg}).notify();
     var prompts = [
       {
@@ -55,41 +55,39 @@ module.exports = yeoman.Base.extend({
       // To access props later use this.props.someAnswer;
       this.props = props;
     }.bind(this));
-  },
+  }
 
   // Writing Logic
-  writing: {
+  writing() {
     // Copy the configuration files
-    config: function () {
-      var vis = this.props.visibility;
-      var serialize = this.props.serializable;
-      var parts = this.props.name.split('.');
-      var name = parts.pop();
+    var vis = this.props.visibility;
+    var serialize = this.props.serializable;
+    var parts = this.props.name.split('.');
+    var name = parts.pop();
 
-      this.props = this.config.getAll();
-      this.props.package = parts.join('.');
-      this.props.dir = parts.join('/');
-      this.props.name = name;
-      this.props.vis = vis;
+    this.props = this.config.getAll();
+    this.props.package = parts.join('.');
+    this.props.dir = parts.join('/');
+    this.props.name = name;
+    this.props.vis = vis;
 
-      var namespace = (this.props.namespace || '').replace(/\./g, '/');
+    var namespace = (this.props.namespace || '').replace(/\./g, '/');
 
-      this.fs.copyTpl(
-        this.templatePath('Class.java'),
-        this.destinationPath(path.join('ODP/Code/Java', namespace, this.props.dir, this.props.name + '.java')), {
-          package: this.props.package,
-          namespace: namespace,
-          visibility: vis,
-          name: this.props.name,
-          serializable: serialize
-        }
-      );
+    this.fs.copyTpl(
+      this.templatePath('Class.java'),
+      this.destinationPath(path.join('ODP/Code/Java', namespace, this.props.dir, this.props.name + '.java')), {
+        package: this.props.package,
+        namespace: namespace,
+        visibility: vis,
+        name: this.props.name,
+        serializable: serialize
+      }
+    );
 
-      this.log(yosay(chalk.red('Done') + ` creating the ${this.props.name} Class.`));
-    }
-  },
+    this.log(yosay(chalk.red('Done') + ` creating the ${this.props.name} Class.`));
+  }
 
-  install: function () {
+  install() {
     // this.installDependencies();
   }
-});
+};

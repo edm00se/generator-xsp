@@ -4,7 +4,7 @@
 
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage Status][codecov-image]][codecov-url] [![Codacy Badge][codacy-image]][codacy-url] [![semantic-release][semantic-release-image]][semantic-release-url] [![npm][npm-license]][npm-url] [![PRs Welcome][prs-badge]][prs] [![Roadmap][roadmap-badge]][roadmap] [![Issues][waffle-img]][waffle-link]
 
-[![npm badge](https://nodei.co/npm/generator-xsp.png?downloads=true&downloadRank=true&stars=true)](http://npm.im/generator-xsp)
+[![NPM badge][npm-badge]][npm-url]
 
 ## Requirements
 
@@ -89,6 +89,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 [npm-image]: https://badge.fury.io/js/generator-xsp.svg
 [npm-url]: https://npmjs.org/package/generator-xsp
 [npm-license]: https://img.shields.io/npm/l/generator-xsp.svg
+[npm-badge]: https://nodei.co/npm/generator-xsp.png?downloads=true&downloadRank=true&stars=true
 [travis-image]: https://travis-ci.org/edm00se/generator-xsp.svg?branch=master
 [travis-url]: https://travis-ci.org/edm00se/generator-xsp
 [daviddm-image]: https://david-dm.org/edm00se/generator-xsp/status.svg
@@ -104,5 +105,5 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 [prs]: http://makeapullrequest.com
 [roadmap]: https://github.com/edm00se/generator-xsp/blob/master/docs/RoadMap.md
 [roadmap-badge]: https://img.shields.io/badge/%F0%9F%93%94-roadmap-CD9523.svg
-[waffle-img]: https://badge.waffle.io/edm00se/generator-xsp.png?label=ready&title=Ready
+[waffle-img]: https://badge.waffle.io/edm00se/generator-xsp.png?label=In%20Progress&title=In%20Progress
 [waffle-link]: https://waffle.io/edm00se/generator-xsp
