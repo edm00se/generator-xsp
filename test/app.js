@@ -9,11 +9,11 @@ describe('generator-xsp:app', function () {
     before(function () {
       return helpers.run(path.join(__dirname, '../generators/app'))
         .withOptions({
-          name: testProjName,
-          ddeplugins: 'com.ibm.xsp.extlib.library'
+          name: testProjName
         })
         .withPrompts({
           basetheme: 'webstandard',
+          ddeplugins: [],
           starterResources: true,
           installBower: false,
           useNpm: true
@@ -43,12 +43,11 @@ describe('generator-xsp:app', function () {
     before(function () {
       return helpers.run(path.join(__dirname, '../generators/app'))
         .withOptions({
-          name: testProjName,
-          basetheme: 'webstandard',
-          ddeplugins: 'com.ibm.xsp.extlib.library'
+          name: testProjName
         })
         .withPrompts({
           basetheme: 'Bootstrap3',
+          ddeplugins: ['com.ibm.xsp.extlib.library'],
           starterResources: false,
           installBower: true
         })

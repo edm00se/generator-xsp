@@ -1,11 +1,11 @@
 'use strict';
-var path = require('path');
-var assert = require('yeoman-assert');
-var helpers = require('yeoman-test');
-var testFileName = 'bar';
+const path = require('path');
+const assert = require('yeoman-assert');
+const helpers = require('yeoman-test');
+const testFileName = 'bar';
 
 describe('generator-xsp:cc', function () {
-  before(function () {
+  before(() => {
     return helpers.run(path.join(__dirname, '../generators/cc'))
       .withPrompts({ccname: testFileName})
       .toPromise();
