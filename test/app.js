@@ -5,7 +5,40 @@ var helpers = require('yeoman-test');
 var testProjName = 'SomeApp';
 
 describe('generator-xsp:app', function () {
-  describe('app with no bower but with starter theme components', function () {
+  describe('app without bower or npm deps', function () {
+    before(function () {
+      return helpers.run(path.join(__dirname, '../generators/app'))
+        .withOptions({
+          name: testProjName
+        })
+        .withPrompts({
+          basetheme: 'Bootstrap3',
+          ddeplugins: ['com.ibm.xsp.extlib.library'],
+          starterResources: false,
+          installBower: false,
+          useNpm: false
+        })
+        .toPromise();
+    });
+
+    it('creates base ODP files without bower or npm', function () {
+      assert.file([
+        'ODP/.project',
+        'ODP/AppProperties/database.properties',
+        'ODP/plugin.xml',
+        'ODP/Resources/IconNote'
+      ]);
+      assert.noFile([
+        'ODP/Resources/StyleSheets/app.css',
+        'ODP/Code/ScriptLibraries/app.js',
+        'ODP/Code/ScriptLibraries/app.jss',
+        'package.json',
+        'bower.json'
+      ]);
+    });
+  });
+
+  describe('app with npm, no bower, with starter theme components', function () {
     before(function () {
       return helpers.run(path.join(__dirname, '../generators/app'))
         .withOptions({
@@ -21,7 +54,7 @@ describe('generator-xsp:app', function () {
         .toPromise();
     });
 
-    it('creates base ODP files', function () {
+    it('creates base ODP files with starter resources', function () {
       assert.file([
         'ODP/.project',
         'ODP/AppProperties/database.properties',
@@ -39,7 +72,7 @@ describe('generator-xsp:app', function () {
     });
   });
 
-  describe('app with bower', function () {
+  describe('app with bower no npm', function () {
     before(function () {
       return helpers.run(path.join(__dirname, '../generators/app'))
         .withOptions({
@@ -49,7 +82,8 @@ describe('generator-xsp:app', function () {
           basetheme: 'Bootstrap3',
           ddeplugins: ['com.ibm.xsp.extlib.library'],
           starterResources: false,
-          installBower: true
+          installBower: true,
+          useNpm: false
         })
         .toPromise();
     });
