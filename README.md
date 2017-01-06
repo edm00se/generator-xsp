@@ -1,14 +1,10 @@
 # generator-xsp
 
-> a yeoman generator to scaffold an XPages runtime (xsp) compliant On Disk Project (ODP)
+> a [yeoman](http://yeoman.io/) generator to scaffold an XPages runtime (xsp) compliant On Disk Project (ODP)
 
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage Status][codecov-image]][codecov-url] [![Codacy Badge][codacy-image]][codacy-url] [![semantic-release][semantic-release-image]][semantic-release-url] [![npm][npm-license]][npm-url] [![PRs Welcome][prs-badge]][prs] [![Roadmap][roadmap-badge]][roadmap] [![Issues][waffle-img]][waffle-link]
 
 [![NPM badge][npm-badge]][npm-url]
-
-## Requirements
-
-Node v4.x LTS, v6.9.0(+) LTS, or v7 stable is required. This *should* work with iojs v3 (or node v5 or v6.x), but is known to fail on node v0.12 and v0.10 ([refs issue #3](https://github.com/edm00se/generator-xsp/issues/3)).
 
 ## Installation
 
@@ -29,9 +25,12 @@ cd my-new-proj
 yo xsp
 ```
 
-### Importing to DDE
+### Example
+[![asciicast](https://asciinema.org/a/bttg0m2v4m8l85cnpyoxzofjt.png)](https://asciinema.org/a/bttg0m2v4m8l85cnpyoxzofjt)
 
-Importing your On Disk Project (ODP) into IBM Domino Designer is the end-goal. This will not work as a full NSF application without being interacted with from a Domino Designer instance.
+## Import to [IBM Domino Designer](https://www.ibm.com/developerworks/downloads/ls/dominodesigner/)
+
+Importing your On Disk Project (ODP) into IBM Domino Designer is the end-goal. This will not work as a full application in its NSF container without being interacted with from a Domino Designer instance.
 
 If you need help getting started with source control and its relationship to Domino/XPages applicaitons, you may wish to get started at [Notes in 9 episode 131: Use SourceTree for Better XPages Source Control](http://www.notesin9.com/2013/11/12/notesin9-131-use-sourcetree-for-better-xpages-source-control/).
 
@@ -46,33 +45,12 @@ Available are:
 - Java `Class`es, `yo xsp:class`
 - Java `Class`es configured as beans, `yo xsp:bean`
 - a `CustomRestService` bean and integration into an `api.xsp` XPage via `xe:restService`, `yo xsp:rest`
-- more coming soon!
 
-### Optional Inline Naming
-
-For any of the sub-generators, you can optionally pass in as a CLI parameter the name, as opposed to being prompted for it each time. An example of creating an XPage in your app (from the rood project directory path), with a name of "beer" (`ODP/XPages/beer.xsp`), is:
-
-```bash
-yo xsp:xpage beer
-```
-
-## About
-
-Yeoman is a "scaffolding tool for modern webapps". This generator, a scaffolding "blueprints", invoked after Yeoman's CLI command (`yo anAwesomeGenerator`), was built using [Yeoman's generator-generator](https://github.com/yeoman/generator-generator). Feel free to [learn more about it at all yeoman.io](http://yeoman.io/).
-
-The generator builds a starter On Disk Project (ODP) from which this application (NSF) can be built. The NSF is a stock app, with virtually no content, save this XPage, for reference.
-
-Out of the box, you should be prompted for an applicaiton name (which will drive the ap name, ODP name, and file name). Over time, more options will be configured to prompt, with defaults specified.
-
-### An XPages Flavor
-
-To see more about how this, and other advanced, node-based tooling, can be used with XPages applications, check out the author's [blog series on task runners with Domino/XPages](https://edm00se.io/task-runners-with-domino-apps).
-
-## [Road Map](docs/RoadMap.md)
+## [Road Map][roadmap]
 
 ### Want More?
 
-Feel free to report bugs [in Issues](https://github.com/edm00se/generator-xsp/issues), and should you have an addition to the road map, [create a Pull Request to this repo, of just this ReadMe.md](README.md), with what you would like added. If you would like to contribute otherwise, read the [CONTRIBUTING guide](docs/CONTRIBUTING.md), then [create a Pull Request from a Fork](https://github.com/edm00se/generator-xsp/compare).
+Feel free to report bugs [in Issues](https://github.com/edm00se/generator-xsp/issues), and should you have an addition to the road map, [create a Pull Request to this repo, of just this ReadMe.md](README.md), with what you would like added. If you would like to contribute code, read the [CONTRIBUTING guide](CONTRIBUTING.md), then [create a Pull Request](https://github.com/edm00se/generator-xsp/compare).
 
 ## License
 
@@ -104,7 +82,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 [semantic-release-url]: https://github.com/semantic-release/semantic-release
 [prs-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg
 [prs]: http://makeapullrequest.com
-[roadmap]: https://github.com/edm00se/generator-xsp/blob/master/docs/RoadMap.md
+[roadmap]: https://waffle.io/edm00se/generator-xsp
 [roadmap-badge]: https://img.shields.io/badge/%F0%9F%93%94-roadmap-CD9523.svg
 [waffle-img]: https://badge.waffle.io/edm00se/generator-xsp.png?label=In%20Progress&title=In%20Progress
 [waffle-link]: https://waffle.io/edm00se/generator-xsp
