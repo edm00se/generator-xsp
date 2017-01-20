@@ -1,0 +1,10 @@
+Description:
+    Creates a new Java class, configured as a managed bean, within the On
+    Disk Project, based on the selected options
+
+Example:
+    yo xsp:bean
+
+    This will compose a new Java Class within the On Disk Project and configures
+    it as a managed bean by registering it in faces-config, defaults to view
+    scope

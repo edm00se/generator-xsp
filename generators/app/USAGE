@@ -1,0 +1,9 @@
+Description:
+    Creates a new XPages compatible On Disk Project, based on the selected options
+
+Example:
+    yo xsp
+
+    This will compose a new On Disk Project, default to the ODP in the current
+    working directory, to scaffold an application for import into IBM Domino
+    Designer to generate an actual NSF

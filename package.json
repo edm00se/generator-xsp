@@ -11,7 +11,7 @@
   "files": [
     "generators"
   ],
-  "main": "generators/index.js",
+  "main": "generators/app/index.js",
   "engines": {
     "node": ">=4.5.0",
     "npm": ">=3.0.0"

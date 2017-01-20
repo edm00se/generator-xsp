@@ -1,0 +1,8 @@
+Description:
+    Creates a new Java class, within the On Disk Project, based on the selected options
+
+Example:
+    yo xsp:class
+
+    This will compose a new Java Class within the On Disk Project, defaults to
+    public visibility
