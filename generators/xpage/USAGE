@@ -1,0 +1,7 @@
+Description:
+    Creates a new XPage, as in the root design element, based on the selected options
+
+Example:
+    yo xsp:xpage
+
+    This will compose a new XPage within the On Disk Project

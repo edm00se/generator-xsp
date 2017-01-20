@@ -1,0 +1,10 @@
+Description:
+    Creates a new Java class, configured as `implements CustomServiceBean`,
+    within the On Disk Project, and creates an `xe:restService` control in an
+    XPage, `api.xsp`, binding them together, based on the selected options
+
+Example:
+    yo xsp:rest
+
+    This will compose a new XPages rest control, using a CustomServiceBean,
+    within On Disk Project and configures it

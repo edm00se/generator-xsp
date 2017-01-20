@@ -1,0 +1,7 @@
+Description:
+    Creates a new Custom Control, based on the selected options
+
+Example:
+    yo xsp:cc
+
+    This will compose a new Custom Control within the On Disk Project
