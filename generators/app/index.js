@@ -7,12 +7,60 @@ const pkg = require('../../package.json');
 const changeCase = require('change-case');
 
 module.exports = class extends Generator {
+
+  constructor(args, opts) {
+    // Calling the super constructor is important so our generator is correctly set up
+    super(args, opts);
+
+    this.option('name', {
+      desc: 'the name to give the application',
+      type: String,
+      alias: 'n'
+    });
+
+    if (this.options.name) {
+      this.myAppName = this.options.name;
+      this.config.set('name', this.myAppName);
+    }
+
+    // This method adds support for a `--set-odp-path` flag
+    this.option('set-odp-path', {
+      desc: 'sets On Disk Project path',
+      type: String,
+      alias: 'p',
+      default: 'ODP'
+    });
+
+    // This method adds support for a `--set-odp-path` flag
+    this.option('skip-app-init', {
+      desc: 'skips other setup for a new app, use wth set-odp-path',
+      type: String,
+      alias: 's'
+    });
+
+    if (this.options['set-odp-path'] && this.options['skip-app-init']) {
+      this.reconfigureOdp = true;
+      this.config.set('odpPath', this.options['set-odp-path']);
+      return;
+    }
+
+    // And you can then access it later; e.g.
+    this.odpPath = (this.options['set-odp-path'] ? this.options['set-odp-path'] : 'ODP');
+    this.config.set('odpPath', this.odpPath);
+  }
+
   prompting() {
     updateNotifier({pkg}).notify();
 
+    if (this.reconfigureOdp === true) {
+      return;
+    }
+
+    const ctx = this;
+
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the ' + chalk.red('generator-xsp') + ' generator!'
+      'Welcome to ' + chalk.red('generator-xsp') + '!'
     ));
 
     const prompts = [
@@ -20,7 +68,10 @@ module.exports = class extends Generator {
         type: 'input',
         name: 'name',
         message: 'What shall we call your app?',
-        default: this.appname
+        default: this.myAppName || this.appname,
+        when: function () {
+          return undefined === ctx.myAppName;
+        }
       },
       {
         type: 'list',
@@ -112,6 +163,9 @@ module.exports = class extends Generator {
 
   // Copy the configuration files
   config() {
+    if (this.reconfigureOdp === true) {
+      return;
+    }
     if (this.props.ddeplugins.indexOf('com.ibm.xsp.extlib.library') > -1) {
       this.config.set('useExtLib', true);
     } else {
@@ -147,10 +201,13 @@ module.exports = class extends Generator {
 
   // Copy ODP's application files
   app() {
+    if (this.reconfigureOdp === true) {
+      return;
+    }
     // Main ODP
     this.fs.copy(
       this.templatePath('ODP'),
-      this.destinationPath('ODP')
+      this.destinationPath(this.odpPath)
     );
     // .gitattributes
     this.fs.copyTpl(
@@ -160,59 +217,62 @@ module.exports = class extends Generator {
     // Templated files (to inject app name as received)
     this.fs.copyTpl(
       this.templatePath('_project'),
-      this.destinationPath('ODP/.project'), {
-        name: this.props.name + ' ODP'
+      this.destinationPath(this.odpPath + '/.project'), {
+        name: this.props.name + this.odpPath
       }
     );
     this.fs.copyTpl(
       this.templatePath('_database.properties'),
-      this.destinationPath('ODP/AppProperties/database.properties'), {
+      this.destinationPath(this.odpPath + '/AppProperties/database.properties'), {
         name: this.props.name,
         filename: this.props.filename
       }
     );
     this.fs.copyTpl(
       this.templatePath('_plugin.xml'),
-      this.destinationPath('ODP/plugin.xml'), {
-        name: this.props.name + ' ODP'
+      this.destinationPath(this.odpPath + '/plugin.xml'), {
+        name: this.props.name + this.odpPath
       }
     );
     this.fs.copyTpl(
       this.templatePath('_IconNote'),
-      this.destinationPath('ODP/Resources/IconNote'), {
+      this.destinationPath(this.odpPath + '/Resources/IconNote'), {
         name: this.props.name
       }
     );
     this.fs.copyTpl(
       this.templatePath('_app.theme'),
-      this.destinationPath('ODP/Resources/Themes/app.theme'), {
+      this.destinationPath(this.odpPath + '/Resources/Themes/app.theme'), {
         basetheme: this.props.basetheme,
         starterResources: this.props.starterResources
       }
     );
     this.fs.copyTpl(
       this.templatePath('_xsp.properties'),
-      this.destinationPath('ODP/WebContent/WEB-INF/xsp.properties'), {
+      this.destinationPath(this.odpPath + '/WebContent/WEB-INF/xsp.properties'), {
         ddeplugins: this.props.ddeplugins
       }
     );
     if (this.props.starterResources === true) {
       this.fs.copyTpl(
         this.templatePath('_app.css'),
-        this.destinationPath('ODP/Resources/StyleSheets/app.css')
+        this.destinationPath(this.odpPath + '/Resources/StyleSheets/app.css')
       );
       this.fs.copyTpl(
         this.templatePath('_app.js'),
-        this.destinationPath('ODP/Code/ScriptLibraries/app.js')
+        this.destinationPath(this.odpPath + '/Code/ScriptLibraries/app.js')
       );
       this.fs.copyTpl(
         this.templatePath('_app.jss'),
-        this.destinationPath('ODP/Code/ScriptLibraries/app.jss')
+        this.destinationPath(this.odpPath + '/Code/ScriptLibraries/app.jss')
       );
     }
   }
 
   install() {
+    if (this.reconfigureOdp === true) {
+      return;
+    }
     let depOpt = {
       bower: false,
       npm: false

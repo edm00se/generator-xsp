@@ -72,11 +72,12 @@ describe('generator-xsp:app', function () {
     });
   });
 
-  describe('app with bower no npm', function () {
+  describe('app with bower no npm, alt ODP path', function () {
     before(function () {
       return helpers.run(path.join(__dirname, '../generators/app'))
         .withOptions({
-          name: testProjName
+          name: testProjName,
+          'set-odp-path': 'NSF'
         })
         .withPrompts({
           basetheme: 'Bootstrap3',
@@ -90,16 +91,41 @@ describe('generator-xsp:app', function () {
 
     it('creates base ODP files with bower support', function () {
       assert.file([
-        'ODP/.project',
-        'ODP/AppProperties/database.properties',
-        'ODP/plugin.xml',
-        'ODP/Resources/IconNote',
+        'NSF/.project',
+        'NSF/AppProperties/database.properties',
+        'NSF/plugin.xml',
+        'NSF/Resources/IconNote',
         'bower.json'
       ]);
       assert.noFile([
-        'ODP/Resources/StyleSheets/app.css',
-        'ODP/Code/ScriptLibraries/app.js',
-        'ODP/Code/ScriptLibraries/app.jss'
+        'NSF/Resources/StyleSheets/app.css',
+        'NSF/Code/ScriptLibraries/app.js',
+        'NSF/Code/ScriptLibraries/app.jss'
+      ]);
+    });
+  });
+
+  describe('reconfigure existing app to use given ODP path', function () {
+    before(function () {
+      return helpers.run(path.join(__dirname, '../generators/app'))
+        .withOptions({
+          'set-odp-path': 'NSF',
+          'skip-app-init': true
+        })
+        .toPromise();
+    });
+
+    it('creates config file with odp option', function () {
+      assert.file('.yo-rc.json');
+      assert.fileContent('.yo-rc.json', `{
+  "generator-xsp": {
+    "odpPath": "NSF"
+  }
+}`);
+      assert.noFile([
+        '.gitattributes',
+        'ODP/.project',
+        'NSF/.project'
       ]);
     });
   });

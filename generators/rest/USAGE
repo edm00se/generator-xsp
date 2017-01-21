@@ -6,5 +6,6 @@ Description:
 Example:
     yo xsp:rest
 
-    This will compose a new XPages rest control, using a CustomServiceBean,
-    within On Disk Project and configures it
+    This will compose a new XPages xe:restService control, connects it to a
+    CustomServiceBean which is created, and establishes it within On Disk
+    Project
