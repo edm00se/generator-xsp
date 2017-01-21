@@ -60,6 +60,7 @@ module.exports = class extends Generator {
     var parts = this.props.name.split('.');
     var name = parts.pop();
     var log = this.log;
+    const odpPath = this.config.get('odpPath') || 'ODP';
 
     this.props = this.config.getAll();
     this.props.package = parts.join('.');
@@ -74,7 +75,7 @@ module.exports = class extends Generator {
 
     this.fs.copyTpl(
       this.templatePath('Class.java'),
-      this.destinationPath(path.join('ODP/Code/Java', namespace, this.props.dir, this.props.name + '.java')), {
+      this.destinationPath(path.join(odpPath + '/Code/Java', namespace, this.props.dir, this.props.name + '.java')), {
         package: pkg,
         namespace: namespace,
         name: this.props.name,
@@ -87,7 +88,7 @@ module.exports = class extends Generator {
 
     // write block to faces-config.xml
     var projRoot = this.destinationRoot();
-    fs.readFile(path.join(projRoot, 'ODP/WebContent/WEB-INF/faces-config.xml'), 'utf8', function (err, data) {
+    fs.readFile(path.join(projRoot, odpPath + '/WebContent/WEB-INF/faces-config.xml'), 'utf8', function (err, data) {
       /* istanbul ignore else */
       if (err) {
         log(yosay(
@@ -109,7 +110,7 @@ You should de-conflict your faces-config.xml file manually.`
 </managed-bean>
 `;
         $('faces-config').append(add);
-        fs.writeFile(path.join(projRoot, 'ODP/WebContent/WEB-INF/faces-config.xml'), $.xml(), 'utf8', function (err) {
+        fs.writeFile(path.join(projRoot, odpPath + '/WebContent/WEB-INF/faces-config.xml'), $.xml(), 'utf8', function (err) {
           if (err) {
             throw err;
           }

@@ -6,4 +6,18 @@ Example:
 
     This will compose a new On Disk Project, default to the ODP in the current
     working directory, to scaffold an application for import into IBM Domino
-    Designer to generate an actual NSF
+    Designer to generate an actual NSF.
+
+Sub-Generators:
+    yo xsp:[sub-generator]
+
+    Several sub-generators are available, which create and modify an existing
+    application's On Disk Project. For more information, use -h or --help to
+    review additional information about a sub-generator.
+
+    Available:
+    - xpage   Creates a new XPage via given name.
+    - cc      Creates a new Custom Control via given name.
+    - class   Creates a new Java Class within ODP/Code/Java/
+    - bean    Creates a new Java Bean class and registers it with faces-config
+    - rest    Creates a new CustomServiceBean and creates/adds it to a set endpoint

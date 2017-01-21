@@ -40,6 +40,7 @@ module.exports = class extends Generator {
 
   // Copy the configuration files
   config() {
+    const odpPath = this.config.get('odpPath') || 'ODP';
     const vm = this;
     const log = vm.log;
     let endpoint = changeCase.camelCase(vm.endpoint) || vm.props.endpoint;
@@ -54,8 +55,8 @@ module.exports = class extends Generator {
       type: vm.props.contenttype
     };
     /* istanbul ignore next */ // ignoring as the tests run async and no guarantee of existing api.xsp
-    if (fileExists(vm.destinationPath('ODP/XPages/api.xsp'))) {
-      fs.readFile(vm.destinationPath('ODP/XPages/api.xsp'), 'utf8', function (err, data) {
+    if (fileExists(vm.destinationPath(odpPath + '/XPages/api.xsp'))) {
+      fs.readFile(vm.destinationPath(odpPath + '/XPages/api.xsp'), 'utf8', function (err, data) {
         if (err) {
           throw err;
         }
@@ -75,7 +76,7 @@ state="false">
 </xe\\:this.service>
 </xe\\:restService>`;
         $('xp\\:view').append(add);
-        fs.writeFile(vm.destinationPath('ODP/XPages/api.xsp'), $.xml().replace(/\\/gmi, ''), 'utf8', function (er) {
+        fs.writeFile(vm.destinationPath(odpPath + '/XPages/api.xsp'), $.xml().replace(/\\/gmi, ''), 'utf8', function (er) {
           if (er) {
             throw er;
           }
@@ -88,12 +89,12 @@ state="false">
       // new api.xsp needed
       vm.fs.copyTpl(
         vm.templatePath('api.xsp'),
-        vm.destinationPath('ODP/XPages/api.xsp'), opt
+        vm.destinationPath(odpPath + '/XPages/api.xsp'), opt
       );
     }
     vm.fs.copyTpl(
       vm.templatePath('./_serviceBean.java'),
-      vm.destinationPath('ODP/Code/Java/' + opt.serviceBeanPathClass), opt
+      vm.destinationPath(odpPath + '/Code/Java/' + opt.serviceBeanPathClass), opt
     );
     vm.log(yosay(chalk.red('Done') + ` creating the ${vm.props.endpoint} as a Custom Rest Service via Service Bean.`));
   }

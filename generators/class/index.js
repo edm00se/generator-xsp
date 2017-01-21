@@ -59,6 +59,7 @@ module.exports = class extends Generator {
 
   // Writing Logic
   writing() {
+    const odpPath = this.config.get('odpPath') || 'ODP';
     // Copy the configuration files
     var vis = this.props.visibility;
     var serialize = this.props.serializable;
@@ -75,7 +76,7 @@ module.exports = class extends Generator {
 
     this.fs.copyTpl(
       this.templatePath('Class.java'),
-      this.destinationPath(path.join('ODP/Code/Java', namespace, this.props.dir, this.props.name + '.java')), {
+      this.destinationPath(path.join(odpPath + '/Code/Java', namespace, this.props.dir, this.props.name + '.java')), {
         package: this.props.package,
         namespace: namespace,
         visibility: vis,

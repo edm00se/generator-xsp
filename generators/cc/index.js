@@ -23,11 +23,12 @@ module.exports = class extends Generator {
 
   // Writing Logic
   writing() {
+    const odpPath = this.config.get('odpPath') || 'ODP';
     // Copy the configuration files
     var tmpName = _.camelCase(this.ccname) || this.props.ccname;
     this.fs.copyTpl(
       this.templatePath('_some.xsp'),
-      this.destinationPath('ODP/CustomControls/' + tmpName + '.xsp'), {
+      this.destinationPath(odpPath + '/CustomControls/' + tmpName + '.xsp'), {
         name: tmpName
       }
     );
