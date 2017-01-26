@@ -17,10 +17,106 @@ module.exports = class extends Generator {
       type: String,
       alias: 'n'
     });
-
     if (this.options.name) {
       this.myAppName = this.options.name;
       this.config.set('name', this.myAppName);
+    }
+
+    this.option('basetheme', {
+      desc: 'the base theme for the app.theme to extend (ex: webstandard, Bootstrap3, etc.)',
+      type: String,
+      alias: 't'
+    });
+    if (this.options.basetheme) {
+      this.basetheme = this.options.basetheme;
+      this.config.set('name', this.basetheme);
+    }
+
+    this.option('starter-resources', {
+      desc: 'includes starter CSS, JS, SSJS files',
+      type: Boolean,
+      alias: 'r'
+    });
+    this.option('skip-starter-resources', {
+      desc: 'skips inclusion of starter CSS, JS, SSJS files (use instead of --starter-resources)',
+      type: Boolean,
+      alias: 'no-res'
+    });
+    if (this.options['starter-resources']) {
+      this.starterResources = true;
+      this.config.set('starterResources', true);
+    }
+    if (this.options['skip-starter-resources']) {
+      this.starterResources = false;
+      this.config.set('starterResources', false);
+    }
+
+    this.option('dde-plugins', {
+      desc: 'plugins to enable for the app (ExtLib, ODA, JUnit)',
+      type: String,
+      alias: 'd'
+    });
+    if (this.option['dde-plugins']) {
+      const ar = [];
+      this.option['dde-plugins'].split(',').forEach(function (val) {
+        switch (val) {
+          case 'ExtLib':
+            ar.push('com.ibm.xsp.extlib.library');
+            break;
+          case 'ODA':
+            ar.push('org.openntf.domino.xsp.XspLibrary');
+            break;
+          case 'JUnit':
+            ar.push('org.openntf.junit4xpages.Library');
+            break;
+          default:
+            break;
+        }
+      });
+      if (this.options.basetheme) {
+        if (this.options.basetheme === 'Bootstrap3' || this.options.basetheme === 'Bootstrap3_flat') {
+          if (ar.indexOf('com.ibm.xsp.extlib.library') < 0) {
+            ar.push('com.ibm.xsp.extlib.library');
+          }
+        }
+      }
+      this.ddeplugins = ar;
+    }
+
+    this.option('use-bower', {
+      desc: 'opts-in to using Bower for client-side dependency management',
+      type: Boolean,
+      alias: 'b'
+    });
+    this.option('skip-bower', {
+      desc: 'opts-out of using Bower, use instead of --use-bower',
+      type: Boolean
+    });
+    if (this.options['use-bower']) {
+      this.useBower = true;
+      this.config.set('installBower', true);
+    }
+    if (this.options['skip-bower']) {
+      this.useBower = false;
+      this.config.set('installBower', false);
+    }
+
+    this.option('use-npm', {
+      desc: 'opts-in to using npm for dependency management and adds a DORA-like xslt cleaning script',
+      type: Boolean,
+      alias: 'npm'
+    });
+    this.option('skip-npm', {
+      desc: 'opts-out of using npm, use instead of --use-npm',
+      type: Boolean
+    });
+    if (this.options['use-npm']) {
+      this.useNpm = true;
+      this.config.set('useNpm', true);
+    }
+    if (this.options['skip-npm']) {
+      this.useNpm = false;
+      this.config.set('useNpm', false);
     }
 
     // This method adds support for a `--set-odp-path` flag
@@ -31,7 +127,7 @@ module.exports = class extends Generator {
       default: 'ODP'
     });
 
-    // This method adds support for a `--set-odp-path` flag
+    // This method adds support for a `--skip-app-init` flag
     this.option('skip-app-init', {
       desc: 'skips other setup for a new app, use wth set-odp-path',
       type: String,
@@ -87,14 +183,20 @@ module.exports = class extends Generator {
           'oneuiv3.0.2'
         ],
         default: 'webstandard',
-        store: true
+        store: true,
+        when: function () {
+          return undefined === ctx.basetheme;
+        }
       },
       {
         type: 'confirm',
         name: 'starterResources',
         message: 'Would you like to include some starter resources in your theme (app file for CSS, JS, SSJS)?',
         default: true,
-        store: true
+        store: true,
+        when: function () {
+          return undefined === ctx.starterResources;
+        }
       },
       {
         type: 'checkbox',
@@ -137,21 +239,30 @@ module.exports = class extends Generator {
           }
           return altAr;
         },
-        store: true
+        store: true,
+        when: function () {
+          return undefined === ctx.ddeplugins;
+        }
       },
       {
         type: 'confirm',
         name: 'installBower',
         message: 'Would you like to use Bower for dependency management?',
         default: false,
-        store: true
+        store: true,
+        when: function () {
+          return undefined === ctx.useBower;
+        }
       },
       {
         type: 'confirm',
         name: 'useNpm',
         message: 'Include npm scripts (clean to perform a la DORA), etc.?',
         default: true,
-        store: true
+        store: true,
+        when: function () {
+          return undefined === ctx.useNpm;
+        }
       }
     ];
 
