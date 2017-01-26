@@ -100,8 +100,8 @@ module.exports = class extends Generator {
         type: 'checkbox',
         name: 'ddeplugins',
         message: function (answerOb) {
-          var str = 'What plugins should be included?';
-          var condition = (answerOb.basetheme === 'Bootstrap3' || answerOb.basetheme === 'Bootstrap3_flat');
+          let str = 'What plugins should be included?';
+          const condition = (answerOb.basetheme === 'Bootstrap3' || answerOb.basetheme === 'Bootstrap3_flat');
           if (condition) {
             str += '\n  🍰  ExtLib pre-selected in order to extend ' + answerOb.basetheme;
           }
@@ -131,7 +131,7 @@ module.exports = class extends Generator {
         ],
         default: /* istanbul ignore next */
         function (answerOb) {
-          var altAr = [];
+          const altAr = [];
           if (answerOb.basetheme === 'Bootstrap3' || answerOb.baseTheme === 'Bootstrap3_flat') {
             altAr.push('com.ibm.xsp.extlib.library');
           }

@@ -38,6 +38,7 @@
     "yosay": "1.2.1"
   },
   "devDependencies": {
+    "all-contributors-cli": "3.1.0",
     "commitizen": "2.9.5",
     "coveralls": "2.11.15",
     "cz-conventional-changelog": "1.2.0",
@@ -68,6 +69,8 @@
     "url": "https://github.com/edm00se/generator-xsp.git"
   },
   "scripts": {
+    "add": "all-contributors add",
+    "generate": "all-contributors generate",
     "prepublish": "gulp prepublish",
     "test": "gulp",
     "watch": "gulp watch",
