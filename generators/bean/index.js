@@ -11,20 +11,52 @@ const updateNotifier = require('update-notifier');
 const pkg = require('../../package.json');
 
 module.exports = class extends Generator {
+  constructor(args, opts) {
+    // Calling the super constructor is important so our generator is correctly set up
+    super(args, opts);
+
+    this.option('name', {
+      desc: 'the name, in Pascal case (aka- UpperCamelCase), to give the newly created managed bean',
+      type: String,
+      alias: 'n'
+    });
+    if (this.options.name) {
+      this.name = this.options.name;
+    }
+
+    this.option('scope', {
+      desc: 'the scope to give the newly created managed bean',
+      type: String,
+      alias: 's'
+    });
+    if (this.options.scope) {
+      this.scope = this.options.scope;
+    }
+  }
+
   prompting() {
     updateNotifier({pkg}).notify();
-    var prompts = [
+    const ctx = this;
+    const prompts = [
       {
         name: 'name',
         message: 'Name of the class in Pascal case (aka- UpperCamelCase)',
         required: true,
-        type: String
+        type: String,
+        when: function () {
+          return undefined === ctx.name;
+        }
       },
       {
         name: 'scope',
         message: 'Scope to put managed bean into',
-        required: true,
+        required: function () {
+          return undefined === ctx.scope;
+        },
         type: 'list',
+        when: function () {
+          return undefined === ctx.scope;
+        },
         choices: [
           {
             name: 'request',
@@ -56,20 +88,21 @@ module.exports = class extends Generator {
   // Writing Logic
   writing() {
     // Copy the configuration files
-    var scope = this.props.scope;
-    var parts = this.props.name.split('.');
-    var name = parts.pop();
-    var log = this.log;
+    const scope = this.scope || this.props.scope;
+    const rawName = this.name || this.props.name;
+    const parts = rawName.split('.');
+    const name = parts.pop();
+    const log = this.log;
     const odpPath = this.config.get('odpPath') || 'ODP';
 
     this.props = this.config.getAll();
     this.props.package = parts.join('.');
-    var pkg = this.props.package;
+    const pkg = this.props.package;
     this.props.dir = parts.join('/');
     this.props.name = name;
-    var lCaseName = changeCase.lowerCase(this.props.name);
+    const lCaseName = changeCase.lowerCase(this.props.name);
 
-    var namespace = (this.props.namespace || '').replace(/\./g, '/');
+    const namespace = (this.props.namespace || '').replace(/\./g, '/');
 
     const exlib = this.config.get('useExtLib') || false;
 

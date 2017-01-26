@@ -7,12 +7,32 @@ const updateNotifier = require('update-notifier');
 const pkg = require('../../package.json');
 
 module.exports = class extends Generator {
+  constructor(args, opts) {
+    // Calling the super constructor is important so our generator is correctly set up
+    super(args, opts);
+
+    this.option('name', {
+      desc: 'the name to give the newly created Custom Control',
+      type: String,
+      alias: 'n'
+    });
+
+    if (this.options.name) {
+      this.ccname = this.options.name;
+    }
+  }
+
   prompting() {
+    updateNotifier({pkg}).notify();
+    const ctx = this;
     updateNotifier({pkg}).notify();
     var prompts = [{
       type: 'input',
       name: 'ccname',
-      message: 'What shall we call your new Custom Control?'
+      message: 'What shall we call your new Custom Control?',
+      when: function () {
+        return undefined === ctx.ccname;
+      }
     }];
 
     return this.prompt(prompts).then(function (props) {
@@ -33,10 +53,6 @@ module.exports = class extends Generator {
       }
     );
 
-    this.log(yosay(chalk.red('Done') + ` creating the ${this.props.ccname} Custom Control.`));
-  }
-
-  install() {
-    // this.installDependencies();
+    this.log(yosay(chalk.red('Done') + ` creating the ${this.ccname || this.props.ccname} Custom Control.`));
   }
 };

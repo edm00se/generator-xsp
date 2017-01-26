@@ -1,5 +1,5 @@
 Description:
-    Creates a new Java class, configured as `implements CustomServiceBean`,
+    Creates a new Java class, configured to implement `CustomServiceBean`,
     within the On Disk Project, and creates an `xe:restService` control in an
     XPage, `api.xsp`, binding them together, based on the selected options
 

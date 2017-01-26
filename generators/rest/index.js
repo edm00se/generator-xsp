@@ -10,13 +10,41 @@ const changeCase = require('change-case');
 const cheerio = require('cheerio');
 
 module.exports = class extends Generator {
+  constructor(args, opts) {
+    // Calling the super constructor is important so our generator is correctly set up
+    super(args, opts);
+
+    this.option('endpoint', {
+      desc: 'the name to give the newly created RESTful endpoint (ex: "todos" will yield `api.xsp/todos`)',
+      type: String,
+      alias: 'e'
+    });
+    if (this.options.endpoint) {
+      this.endpoint = this.options.endpoint;
+    }
+
+    this.option('contenttype', {
+      desc: 'the content-type to use, such as "application/json", "text/plain", etc.',
+      type: String,
+      alias: 't'
+    });
+    if (this.options.contenttype) {
+      this.contenttype = this.options.contenttype;
+      this.config.set('contenttype', this.contenttype);
+    }
+  }
+
   prompting() {
     updateNotifier({pkg}).notify();
-    var prompts = [
+    const ctx = this;
+    const prompts = [
       {
         type: 'input',
         name: 'endpoint',
-        message: 'What endpoint would you like to use?'
+        message: 'What endpoint would you like to use?',
+        when: function () {
+          return undefined === ctx.endpoint;
+        }
       },
       {
         type: 'list',
@@ -28,7 +56,13 @@ module.exports = class extends Generator {
           'text/xml'
         ],
         default: 'application/json',
-        store: true
+        required: function () {
+          return undefined === ctx.contenttype;
+        },
+        store: true,
+        when: function () {
+          return undefined === ctx.contenttype;
+        }
       }
     ];
 
@@ -43,7 +77,7 @@ module.exports = class extends Generator {
     const odpPath = this.config.get('odpPath') || 'ODP';
     const vm = this;
     const log = vm.log;
-    let endpoint = changeCase.camelCase(vm.endpoint) || vm.props.endpoint;
+    const endpoint = changeCase.camelCase(vm.endpoint) || vm.props.endpoint;
     // define templating vars
     const opt = {
       svcName: endpoint,
@@ -52,7 +86,7 @@ module.exports = class extends Generator {
       serviceBeanPkg: 'app.rest',
       serviceBeanPkgClass: 'app.rest.' + changeCase.pascalCase(endpoint),
       serviceBeanPathClass: 'app/rest/' + changeCase.pascalCase(endpoint) + 'ServiceBean.java',
-      type: vm.props.contenttype
+      type: vm.contenttype || vm.props.contenttype
     };
     /* istanbul ignore next */ // ignoring as the tests run async and no guarantee of existing api.xsp
     if (fileExists(vm.destinationPath(odpPath + '/XPages/api.xsp'))) {
@@ -64,8 +98,8 @@ module.exports = class extends Generator {
           xmlMode: true
         });
         const add = ` <xe\\:restService
-id="${opt.svcName}"
-pathInfo="${opt.path}"
+id="${opt.path}"
+pathInfo="${opt.svcName}"
 state="false">
 <xe\\:this.service>
 	<xe\\:customRestService
@@ -80,9 +114,7 @@ state="false">
           if (er) {
             throw er;
           }
-          log(yosay(
-            'The ' + chalk.red('api.xsp') + ' has been updated!'
-          ));
+          log('The ' + chalk.red('api.xsp') + ' has been updated!');
         });
       });
     } else {
@@ -96,7 +128,7 @@ state="false">
       vm.templatePath('./_serviceBean.java'),
       vm.destinationPath(odpPath + '/Code/Java/' + opt.serviceBeanPathClass), opt
     );
-    vm.log(yosay(chalk.red('Done') + ` creating the ${vm.props.endpoint} as a Custom Rest Service via Service Bean.`));
+    vm.log(yosay(chalk.red('Done') + ` creating the ${vm.endpoint || vm.props.endpoint} as a Custom Rest Service via Service Bean.`));
   }
 
   install() {
