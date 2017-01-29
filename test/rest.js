@@ -113,7 +113,6 @@ describe('generator-xsp:rest', function () {
 
     it('defines use of the CustomServiceBean', () => {
       assert.fileContent(apiXpg, '<xe:customRestService');
-      console.log(myProperName);
       assert.fileContent(apiXpg, `serviceBean="app.rest.${myProperName}ServiceBean"`);
     });
   });
