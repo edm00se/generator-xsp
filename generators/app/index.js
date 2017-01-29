@@ -56,9 +56,16 @@ module.exports = class extends Generator {
       type: String,
       alias: 'd'
     });
+    /* istanbul ignore next */
     if (this.option['dde-plugins']) {
-      const ar = [];
-      this.option['dde-plugins'].split(',').forEach(function (val) {
+      let ar = [];
+      let tmpAr = [];
+      if (this.option['dde-plugins'].indexOf(',') > -1) {
+        tmpAr = this.option['dde-plugins'].split(',');
+      } else {
+        tmpAr.push(this.option['dde-plugins']);
+      }
+      tmpAr.forEach(function (val) {
         switch (val) {
           case 'ExtLib':
             ar.push('com.ibm.xsp.extlib.library');
@@ -110,7 +117,7 @@ module.exports = class extends Generator {
       desc: 'opts-out of using npm, use instead of --use-npm',
       type: Boolean
     });
-    if (this.options['use-npm']) {
+    if (this.options['use-npm'] && this.options['use-npm'] === true) {
       this.useNpm = true;
       this.config.set('useNpm', true);
     }
@@ -141,7 +148,11 @@ module.exports = class extends Generator {
     }
 
     // And you can then access it later; e.g.
-    this.odpPath = (this.options['set-odp-path'] ? this.options['set-odp-path'] : 'ODP');
+    this.odpPath = 'ODP';
+    /* istanbul ignore next */
+    if (this.options['set-odp-path']) {
+      this.odpPath = this.options['set-odp-path'];
+    }
     this.config.set('odpPath', this.odpPath);
   }
 
@@ -283,7 +294,7 @@ module.exports = class extends Generator {
       this.config.set('useExtLib', false);
     }
     /* istanbul ignore else */
-    if (this.props.useNpm) {
+    if (this.props.useNpm || this.useNpm) {
       this.fs.copyTpl(
         this.templatePath('_package.json'),
         this.destinationPath('package.json'), {
@@ -296,7 +307,7 @@ module.exports = class extends Generator {
       );
     }
     // Only load Bower files if requested
-    if (this.props.installBower) {
+    if (this.props.installBower || this.useBower) {
       this.fs.copyTpl(
         this.templatePath('_bower.json'),
         this.destinationPath('bower.json'), {
@@ -355,7 +366,7 @@ module.exports = class extends Generator {
       this.templatePath('_app.theme'),
       this.destinationPath(this.odpPath + '/Resources/Themes/app.theme'), {
         basetheme: this.props.basetheme,
-        starterResources: this.props.starterResources
+        starterResources: this.props.starterResources || this.starterResources
       }
     );
     this.fs.copyTpl(
@@ -364,7 +375,7 @@ module.exports = class extends Generator {
         ddeplugins: this.props.ddeplugins
       }
     );
-    if (this.props.starterResources === true) {
+    if (this.props.starterResources === true || this.starterResources) {
       this.fs.copyTpl(
         this.templatePath('_app.css'),
         this.destinationPath(this.odpPath + '/Resources/StyleSheets/app.css')

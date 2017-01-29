@@ -103,7 +103,7 @@ module.exports = class extends Generator {
   writing() {
     const odpPath = this.config.get('odpPath') || 'ODP';
     // Copy the configuration files
-    const vis = this.visibilitiy || this.props.visibility;
+    const vis = this.visibility || this.props.visibility;
     const serialize = this.serializable || this.props.serializable;
     const rawName = this.name || this.props.name;
     const parts = rawName.split('.');

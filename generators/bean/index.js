@@ -50,7 +50,7 @@ module.exports = class extends Generator {
       {
         name: 'scope',
         message: 'Scope to put managed bean into',
-        required: function () {
+        required: function () {/* istanbul ignore next */
           return undefined === ctx.scope;
         },
         type: 'list',

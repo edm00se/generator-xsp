@@ -16,4 +16,20 @@ describe('generator-xsp:cc', function () {
       'ODP/CustomControls/' + testFileName + '.xsp'
     ]);
   });
+
+  describe('CLI options power invocation', function () {
+    before(function () {
+      return helpers.run(path.join(__dirname, '../generators/cc'))
+        .withOptions({
+          name: 'baz'
+        })
+        .toPromise();
+    });
+
+    it('creates proper file structure from specified options', function () {
+      assert.file([
+        'ODP/CustomControls/baz.xsp'
+      ]);
+    });
+  });
 });

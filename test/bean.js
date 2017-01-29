@@ -23,4 +23,24 @@ describe('generator-xsp:bean', function () {
       ]);
     });
   });
+
+  describe('CLI options power invocation', function () {
+    const modifier = '6';
+
+    before(function () {
+      return helpers.run(path.join(__dirname, '../generators/bean'))
+        .withOptions({
+          name: testName + modifier,
+          scope: 'session'
+        })
+        .toPromise();
+    });
+
+    it('creates proper file structure from specified options', function () {
+      const fPath = 'ODP/Code/Java/' + testName.replace(/\./g, '/') + modifier + '.java';
+      assert.file([
+        fPath
+      ]);
+    });
+  });
 });

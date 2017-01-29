@@ -56,7 +56,7 @@ module.exports = class extends Generator {
           'text/xml'
         ],
         default: 'application/json',
-        required: function () {
+        required: function () {/* istanbul ignore next */
           return undefined === ctx.contenttype;
         },
         store: true,
