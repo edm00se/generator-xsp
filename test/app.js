@@ -8,10 +8,8 @@ describe('generator-xsp:app', function () {
   describe('app without bower or npm deps', function () {
     before(function () {
       return helpers.run(path.join(__dirname, '../generators/app'))
-        .withOptions({
-          name: testProjName
-        })
         .withPrompts({
+          name: testProjName,
           basetheme: 'Bootstrap3',
           ddeplugins: ['com.ibm.xsp.extlib.library'],
           starterResources: false,
@@ -105,7 +103,7 @@ describe('generator-xsp:app', function () {
     });
   });
 
-  describe('reconfigure existing app to use given ODP path', function () {
+  describe('reconfigure existing app to use given ODP path, via CLI options', function () {
     before(function () {
       return helpers.run(path.join(__dirname, '../generators/app'))
         .withOptions({
@@ -127,6 +125,71 @@ describe('generator-xsp:app', function () {
         'ODP/.project',
         'NSF/.project'
       ]);
+    });
+  });
+
+  describe('CLI options power invocation', function () {
+    describe(' basic setup with bower no npm scripts', function () {
+      before(function () {
+        return helpers.run(path.join(__dirname, '../generators/app'))
+          .withOptions({
+            n: testProjName,
+            t: 'webstandard',
+            r: true,
+            'dde-plugins': 'ExtLib',
+            b: true,
+            'skip-npm': true,
+            p: 'ODP'
+          })
+          .toPromise();
+      });
+
+      it('creates proper file structure from specified options', function () {
+        assert.file([
+          'ODP/.project',
+          'ODP/AppProperties/database.properties',
+          'ODP/plugin.xml',
+          'ODP/Resources/IconNote',
+          'bower.json',
+          'ODP/Resources/StyleSheets/app.css',
+          'ODP/Code/ScriptLibraries/app.js',
+          'ODP/Code/ScriptLibraries/app.jss'
+        ]);
+        assert.noFile([
+          'package.json'
+        ]);
+      });
+    });
+    describe(' basic setup with npm scripts, no bower, starter resources', function () {
+      before(function () {
+        return helpers.run(path.join(__dirname, '../generators/app'))
+          .withOptions({
+            n: testProjName,
+            t: 'Bootstrap3',
+            'no-res': true,
+            d: 'ODA',
+            'skip-bower': true,
+            npm: true,
+            p: 'ODP'
+          })
+          .toPromise();
+      });
+
+      it('creates proper file structure from specified options', function () {
+        assert.file([
+          'ODP/.project',
+          'ODP/AppProperties/database.properties',
+          'ODP/plugin.xml',
+          'ODP/Resources/IconNote',
+          'package.json'
+        ]);
+        assert.noFile([
+          'bower.json',
+          'ODP/Resources/StyleSheets/app.css',
+          'ODP/Code/ScriptLibraries/app.js',
+          'ODP/Code/ScriptLibraries/app.jss'
+        ]);
+      });
     });
   });
 });

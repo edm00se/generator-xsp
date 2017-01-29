@@ -1,6 +1,8 @@
 comment:
   layout: header, changes, diff
 coverage:
+  precision: 2
+  round: down
   status:
     patch: false
 codecov:

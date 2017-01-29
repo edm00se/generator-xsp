@@ -16,4 +16,20 @@ describe('generator-xsp:xpage', function () {
       'ODP/XPages/' + testFileName + '.xsp'
     ]);
   });
+
+  describe('CLI options power invocation', function () {
+    before(function () {
+      return helpers.run(path.join(__dirname, '../generators/xpage'))
+        .withOptions({
+          name: 'bar'
+        })
+        .toPromise();
+    });
+
+    it('creates proper file structure from specified options', function () {
+      assert.file([
+        'ODP/XPages/bar.xsp'
+      ]);
+    });
+  });
 });

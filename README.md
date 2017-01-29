@@ -1,4 +1,5 @@
 # generator-xsp
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 
 > a [yeoman](http://yeoman.io/) generator to scaffold an XPages runtime (xsp) compliant On Disk Project (ODP)
 
@@ -51,6 +52,17 @@ Available are:
 ### Want More?
 
 Feel free to report bugs [in Issues](https://github.com/edm00se/generator-xsp/issues), and should you have an addition to the road map, [create a Pull Request to this repo, of just this ReadMe.md](README.md), with what you would like added. If you would like to contribute code, read the [CONTRIBUTING guide](CONTRIBUTING.md), then [create a Pull Request](https://github.com/edm00se/generator-xsp/compare).
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+| [<img src="https://avatars.githubusercontent.com/u/622118?v=3" width="100px;"/><br /><sub>Eric McCormick</sub>](https://ericmccormick.io)<br />[💻](https://github.com/edm00se/generator-xsp/commits?author=edm00se) [📖](https://github.com/edm00se/generator-xsp/commits?author=edm00se) [⚠️](https://github.com/edm00se/generator-xsp/commits?author=edm00se) 🚇 💡 |
+| :---: |
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
 
 ## License
 

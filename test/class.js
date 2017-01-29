@@ -81,4 +81,28 @@ describe('generator-xsp:class', function () {
       ]);
     });
   });
+
+  describe('CLI options power invocation', function () {
+    const modifier = '6';
+
+    before(function () {
+      return helpers.run(path.join(__dirname, '../generators/class'))
+        .withOptions({
+          name: testName + modifier,
+          visibility: 'public',
+          serializable: true
+        })
+        .toPromise();
+    });
+
+    it('creates proper file structure from specified options', function () {
+      const fPath = 'ODP/Code/Java/' + testName.replace(/\./g, '/') + modifier + '.java';
+      assert.file([
+        fPath
+      ]);
+
+      const tmpBuf = fs.readFileSync(fPath);
+      assert(tmpBuf.toString().includes('implements Serializable'));
+    });
+  });
 });
