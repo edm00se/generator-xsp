@@ -3,7 +3,11 @@ comment:
 coverage:
   precision: 2
   round: down
+  range: 50...100
   status:
     patch: false
+    project:
+      enabled: yes
+      target: auto
 codecov:
   token: 78b6bc7d-726e-4665-835d-214a81407c88
