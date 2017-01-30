@@ -57,13 +57,13 @@ module.exports = class extends Generator {
       alias: 'd'
     });
     /* istanbul ignore next */
-    if (this.option['dde-plugins']) {
+    if (this.options['dde-plugins']) {
       let ar = [];
       let tmpAr = [];
-      if (this.option['dde-plugins'].indexOf(',') > -1) {
-        tmpAr = this.option['dde-plugins'].split(',');
+      if (this.options['dde-plugins'].indexOf(',') > -1) {
+        tmpAr = this.options['dde-plugins'].split(',');
       } else {
-        tmpAr.push(this.option['dde-plugins']);
+        tmpAr.push(this.options['dde-plugins']);
       }
       tmpAr.forEach(function (val) {
         switch (val) {
@@ -288,7 +288,8 @@ module.exports = class extends Generator {
     if (this.reconfigureOdp === true) {
       return;
     }
-    if (this.props.ddeplugins.indexOf('com.ibm.xsp.extlib.library') > -1) {
+    const tmpPlugins = this.ddeplugins || this.props.ddeplugins;
+    if (tmpPlugins.indexOf('com.ibm.xsp.extlib.library') > -1) {
       this.config.set('useExtLib', true);
     } else {
       this.config.set('useExtLib', false);
@@ -372,7 +373,7 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('_xsp.properties'),
       this.destinationPath(this.odpPath + '/WebContent/WEB-INF/xsp.properties'), {
-        ddeplugins: this.props.ddeplugins
+        ddeplugins: this.ddeplugins || this.props.ddeplugins
       }
     );
     if (this.props.starterResources === true || this.starterResources) {
