@@ -1,9 +1,8 @@
 # generator-xsp
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 
 > a [yeoman](http://yeoman.io/) generator to scaffold an XPages runtime (xsp) compliant On Disk Project (ODP)
 
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage Status][codecov-image]][codecov-url] [![Codacy Badge][codacy-image]][codacy-url] [![semantic-release][semantic-release-image]][semantic-release-url] [![npm][npm-license]][npm-url] [![PRs Welcome][prs-badge]][prs] [![Roadmap][roadmap-badge]][roadmap] [![Issues][waffle-img]][waffle-link]
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage Status][codecov-image]][codecov-url] [![Codacy Badge][codacy-image]][codacy-url] [![semantic-release][semantic-release-image]][semantic-release-url] [![npm][npm-license]][npm-url] [![PRs Welcome][prs-badge]][prs] [![Roadmap][roadmap-badge]][roadmap] [![Issues][waffle-img]][waffle-link] [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg)](#contributors)
 
 [![NPM badge][npm-badge]][npm-url]
 
@@ -51,7 +50,7 @@ Available are:
 
 ### Want More?
 
-Feel free to report bugs [in Issues](https://github.com/edm00se/generator-xsp/issues), and should you have an addition to the road map, [create a Pull Request to this repo, of just this ReadMe.md](README.md), with what you would like added. If you would like to contribute code, read the [CONTRIBUTING guide](CONTRIBUTING.md), then [create a Pull Request](https://github.com/edm00se/generator-xsp/compare).
+Feel free to report bugs [in Issues](https://github.com/edm00se/generator-xsp/issues). If you would like to contribute code, read the [CONTRIBUTING guide](CONTRIBUTING.md), then [create a Pull Request](https://github.com/edm00se/generator-xsp/compare).
 
 ## Contributors
 
