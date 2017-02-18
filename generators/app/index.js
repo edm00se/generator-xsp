@@ -109,7 +109,7 @@ module.exports = class extends Generator {
     }
 
     this.option('use-npm', {
-      desc: 'opts-in to using npm for dependency management and adds a DORA-like xslt cleaning script',
+      desc: 'opts-in to using npm for dependency management and adds a dora cleaning script to package.json',
       type: Boolean,
       alias: 'npm'
     });
@@ -299,7 +299,8 @@ module.exports = class extends Generator {
       this.fs.copyTpl(
         this.templatePath('_package.json'),
         this.destinationPath('package.json'), {
-          name: changeCase.paramCase(this.props.name)
+          name: changeCase.paramCase(this.props.name),
+          odp: this.odpPath
         }
       );
       this.fs.copy(
