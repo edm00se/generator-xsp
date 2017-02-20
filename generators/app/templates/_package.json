@@ -1,18 +1,12 @@
 {
     "name": "<%= name %>",
     "scripts": {
-        "clean:meta": "grunt",
-        "test": "echo \"Error: no test specified\" && exit 1"
+      "clean": "npm run clean:meta",
+      "clean:meta": "dora '<%= odp %>''",
+      "test": "echo \"Error: no test specified\" && exit 1"
     },
     "dependencies": {},
     "devDependencies": {
-      "grunt": "1.0.1",
-      "grunt-cli": "1.2.0",
-      "grunt-contrib-clean": "1.0.0",
-      "grunt-contrib-copy": "1.0.0",
-      "grunt-curl": "2.2.0",
-      "grunt-httpcopy": "0.3.0",
-      "grunt-xsltproc": "0.6.1",
-      "time-grunt": "1.4.0"
+      "dora-cli": "1.0.1"
     }
 }

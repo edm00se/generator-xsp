@@ -89,7 +89,7 @@ module.exports = class extends Generator {
       type: vm.contenttype || vm.props.contenttype
     };
     /* istanbul ignore next */ // ignoring as the tests run async and no guarantee of existing api.xsp
-    if (fileExists(vm.destinationPath(odpPath + '/XPages/api.xsp'))) {
+    if (fileExists.sync(vm.destinationPath(odpPath + '/XPages/api.xsp'))) {
       fs.readFile(vm.destinationPath(odpPath + '/XPages/api.xsp'), 'utf8', function (err, data) {
         if (err) {
           throw err;
