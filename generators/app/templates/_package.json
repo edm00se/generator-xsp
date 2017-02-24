@@ -2,11 +2,11 @@
     "name": "<%= name %>",
     "scripts": {
       "clean": "npm run clean:meta",
-      "clean:meta": "dora '<%= odp %>''",
+      "clean:meta": "dora '<%= odp %>'",
       "test": "echo \"Error: no test specified\" && exit 1"
     },
     "dependencies": {},
     "devDependencies": {
-      "dora-cli": "1.0.2"
+      "dora-cli": "1.0.3"
     }
 }
