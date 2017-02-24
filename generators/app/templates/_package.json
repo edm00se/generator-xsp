@@ -7,6 +7,6 @@
     },
     "dependencies": {},
     "devDependencies": {
-      "dora-cli": "1.0.2"
+      "dora-cli": "1.0.3"
     }
 }
