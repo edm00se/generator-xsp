@@ -7,7 +7,6 @@ const pkg = require('../../package.json');
 const changeCase = require('change-case');
 
 module.exports = class extends Generator {
-
   constructor(args, opts) {
     // Calling the super constructor is important so our generator is correctly set up
     super(args, opts);
@@ -81,7 +80,10 @@ module.exports = class extends Generator {
         }
       });
       if (this.options.basetheme) {
-        if (this.options.basetheme === 'Bootstrap3' || this.options.basetheme === 'Bootstrap3_flat') {
+        if (
+          this.options.basetheme === 'Bootstrap3' ||
+          this.options.basetheme === 'Bootstrap3_flat'
+        ) {
           if (ar.indexOf('com.ibm.xsp.extlib.library') < 0) {
             ar.push('com.ibm.xsp.extlib.library');
           }
@@ -166,9 +168,7 @@ module.exports = class extends Generator {
     const ctx = this;
 
     // Have Yeoman greet the user.
-    this.log(yosay(
-      'Welcome to ' + chalk.red('generator-xsp') + '!'
-    ));
+    this.log(yosay('Welcome to ' + chalk.red('generator-xsp') + '!'));
 
     const prompts = [
       {
@@ -214,9 +214,11 @@ module.exports = class extends Generator {
         name: 'ddeplugins',
         message: function (answerOb) {
           let str = 'What plugins should be included?';
-          const condition = (answerOb.basetheme === 'Bootstrap3' || answerOb.basetheme === 'Bootstrap3_flat');
+          const condition = answerOb.basetheme === 'Bootstrap3' ||
+            answerOb.basetheme === 'Bootstrap3_flat';
           if (condition) {
-            str += '\n  🍰  ExtLib pre-selected in order to extend ' + answerOb.basetheme;
+            str += '\n  🍰  ExtLib pre-selected in order to extend ' +
+              answerOb.basetheme;
           }
           return str;
         },
@@ -242,10 +244,13 @@ module.exports = class extends Generator {
             value: 'org.openntf.junit4xpages.Library'
           }
         ],
-        default: /* istanbul ignore next */
-        function (answerOb) {
+        /* istanbul ignore next */
+        default: function (answerOb) {
           const altAr = [];
-          if (answerOb.basetheme === 'Bootstrap3' || answerOb.baseTheme === 'Bootstrap3_flat') {
+          if (
+            answerOb.basetheme === 'Bootstrap3' ||
+            answerOb.baseTheme === 'Bootstrap3_flat'
+          ) {
             altAr.push('com.ibm.xsp.extlib.library');
           }
           return altAr;
@@ -277,10 +282,12 @@ module.exports = class extends Generator {
       }
     ];
 
-    return this.prompt(prompts).then(function (props) {
-      // To access props later use this.props.someAnswer;
-      this.props = props;
-    }.bind(this));
+    return this.prompt(prompts).then(
+      function (props) {
+        // To access props later use this.props.someAnswer;
+        this.props = props;
+      }.bind(this)
+    );
   }
 
   // Copy the configuration files
@@ -298,7 +305,8 @@ module.exports = class extends Generator {
     if (this.props.useNpm || this.useNpm) {
       this.fs.copyTpl(
         this.templatePath('_package.json'),
-        this.destinationPath('package.json'), {
+        this.destinationPath('package.json'),
+        {
           name: changeCase.paramCase(this.props.name),
           odp: this.odpPath
         }
@@ -312,7 +320,8 @@ module.exports = class extends Generator {
     if (this.props.installBower || this.useBower) {
       this.fs.copyTpl(
         this.templatePath('_bower.json'),
-        this.destinationPath('bower.json'), {
+        this.destinationPath('bower.json'),
+        {
           name: this.props.name
         }
       );
@@ -329,10 +338,7 @@ module.exports = class extends Generator {
       return;
     }
     // Main ODP
-    this.fs.copy(
-      this.templatePath('ODP'),
-      this.destinationPath(this.odpPath)
-    );
+    this.fs.copy(this.templatePath('ODP'), this.destinationPath(this.odpPath));
     // .gitattributes
     this.fs.copyTpl(
       this.templatePath('_gitattributes'),
@@ -341,39 +347,45 @@ module.exports = class extends Generator {
     // Templated files (to inject app name as received)
     this.fs.copyTpl(
       this.templatePath('_project'),
-      this.destinationPath(this.odpPath + '/.project'), {
+      this.destinationPath(this.odpPath + '/.project'),
+      {
         name: this.props.name + this.odpPath
       }
     );
     this.fs.copyTpl(
       this.templatePath('_database.properties'),
-      this.destinationPath(this.odpPath + '/AppProperties/database.properties'), {
+      this.destinationPath(this.odpPath + '/AppProperties/database.properties'),
+      {
         name: this.props.name,
         filename: this.props.filename
       }
     );
     this.fs.copyTpl(
       this.templatePath('_plugin.xml'),
-      this.destinationPath(this.odpPath + '/plugin.xml'), {
+      this.destinationPath(this.odpPath + '/plugin.xml'),
+      {
         name: this.props.name + this.odpPath
       }
     );
     this.fs.copyTpl(
       this.templatePath('_IconNote'),
-      this.destinationPath(this.odpPath + '/Resources/IconNote'), {
+      this.destinationPath(this.odpPath + '/Resources/IconNote'),
+      {
         name: this.props.name
       }
     );
     this.fs.copyTpl(
       this.templatePath('_app.theme'),
-      this.destinationPath(this.odpPath + '/Resources/Themes/app.theme'), {
+      this.destinationPath(this.odpPath + '/Resources/Themes/app.theme'),
+      {
         basetheme: this.props.basetheme,
         starterResources: this.props.starterResources || this.starterResources
       }
     );
     this.fs.copyTpl(
       this.templatePath('_xsp.properties'),
-      this.destinationPath(this.odpPath + '/WebContent/WEB-INF/xsp.properties'), {
+      this.destinationPath(this.odpPath + '/WebContent/WEB-INF/xsp.properties'),
+      {
         ddeplugins: this.ddeplugins || this.props.ddeplugins
       }
     );
@@ -415,5 +427,4 @@ module.exports = class extends Generator {
       this.installDependencies(depOpt);
     }
   }
-
 };

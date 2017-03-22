@@ -1,16 +1,17 @@
 'use strict';
-var path = require('path');
-var gulp = require('gulp');
-var eslint = require('gulp-eslint');
-var eslintConfig = require('./.eslintrc.json');
-var excludeGitignore = require('gulp-exclude-gitignore');
-var mocha = require('gulp-mocha');
-var istanbul = require('gulp-istanbul');
-var nsp = require('gulp-nsp');
-var plumber = require('gulp-plumber');
+const path = require('path');
+const gulp = require('gulp');
+const eslint = require('gulp-eslint');
+const eslintConfig = require('./.eslintrc.json');
+const excludeGitignore = require('gulp-exclude-gitignore');
+const mocha = require('gulp-mocha');
+const istanbul = require('gulp-istanbul');
+const nsp = require('gulp-nsp');
+const plumber = require('gulp-plumber');
 
 gulp.task('static', function () {
-  return gulp.src(['**/*.js', '!generators/**/templates/**/*.js'])
+  return gulp
+    .src(['**/*.js', '!generators/**/templates/**/*.js'])
     .pipe(excludeGitignore())
     .pipe(eslint(eslintConfig))
     .pipe(eslint.format())
@@ -22,19 +23,23 @@ gulp.task('nsp', function (cb) {
 });
 
 gulp.task('pre-test', function () {
-  return gulp.src(['generators/**/*.js', '!generators/**/templates/**/*.js'])
+  return gulp
+    .src(['generators/**/*.js', '!generators/**/templates/**/*.js'])
     .pipe(excludeGitignore())
-    .pipe(istanbul({
-      includeUntested: true,
-      thresholds: {global: 90}
-    }))
+    .pipe(
+      istanbul({
+        includeUntested: true,
+        thresholds: {global: 90}
+      })
+    )
     .pipe(istanbul.hookRequire());
 });
 
 gulp.task('test', ['pre-test'], function (cb) {
   var mochaErr;
 
-  gulp.src('test/**/*.js')
+  gulp
+    .src('test/**/*.js')
     .pipe(plumber())
     .pipe(mocha({reporter: 'spec'}))
     .on('error', function (err) {

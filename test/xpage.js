@@ -6,20 +6,20 @@ const testFileName = 'foo';
 
 describe('generator-xsp:xpage', function () {
   before(function () {
-    return helpers.run(path.join(__dirname, '../generators/xpage'))
+    return helpers
+      .run(path.join(__dirname, '../generators/xpage'))
       .withPrompts({xpagename: testFileName})
       .toPromise();
   });
 
   it('creates specified ODP XPage file', function () {
-    assert.file([
-      'ODP/XPages/' + testFileName + '.xsp'
-    ]);
+    assert.file(['ODP/XPages/' + testFileName + '.xsp']);
   });
 
   describe('CLI options power invocation', function () {
     before(function () {
-      return helpers.run(path.join(__dirname, '../generators/xpage'))
+      return helpers
+        .run(path.join(__dirname, '../generators/xpage'))
         .withOptions({
           name: 'bar'
         })
@@ -27,9 +27,7 @@ describe('generator-xsp:xpage', function () {
     });
 
     it('creates proper file structure from specified options', function () {
-      assert.file([
-        'ODP/XPages/bar.xsp'
-      ]);
+      assert.file(['ODP/XPages/bar.xsp']);
     });
   });
 });

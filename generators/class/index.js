@@ -93,10 +93,12 @@ module.exports = class extends Generator {
       }
     ];
 
-    return this.prompt(prompts).then(function (props) {
-      // To access props later use this.props.someAnswer;
-      this.props = props;
-    }.bind(this));
+    return this.prompt(prompts).then(
+      function (props) {
+        // To access props later use this.props.someAnswer;
+        this.props = props;
+      }.bind(this)
+    );
   }
 
   // Writing Logic
@@ -119,7 +121,15 @@ module.exports = class extends Generator {
 
     this.fs.copyTpl(
       this.templatePath('Class.java'),
-      this.destinationPath(path.join(odpPath + '/Code/Java', namespace, this.props.dir, name + '.java')), {
+      this.destinationPath(
+        path.join(
+          odpPath + '/Code/Java',
+          namespace,
+          this.props.dir,
+          name + '.java'
+        )
+      ),
+      {
         package: this.props.package,
         namespace: namespace,
         visibility: vis,

@@ -50,7 +50,8 @@ module.exports = class extends Generator {
       {
         name: 'scope',
         message: 'Scope to put managed bean into',
-        required: function () {/* istanbul ignore next */
+        required: function () {
+          /* istanbul ignore next */
           return undefined === ctx.scope;
         },
         type: 'list',
@@ -79,10 +80,12 @@ module.exports = class extends Generator {
       }
     ];
 
-    return this.prompt(prompts).then(function (props) {
-      // To access props later use this.props.someAnswer;
-      this.props = props;
-    }.bind(this));
+    return this.prompt(prompts).then(
+      function (props) {
+        // To access props later use this.props.someAnswer;
+        this.props = props;
+      }.bind(this)
+    );
   }
 
   // Writing Logic
@@ -108,7 +111,15 @@ module.exports = class extends Generator {
 
     this.fs.copyTpl(
       this.templatePath('Class.java'),
-      this.destinationPath(path.join(odpPath + '/Code/Java', namespace, this.props.dir, this.props.name + '.java')), {
+      this.destinationPath(
+        path.join(
+          odpPath + '/Code/Java',
+          namespace,
+          this.props.dir,
+          this.props.name + '.java'
+        )
+      ),
+      {
         package: pkg,
         namespace: namespace,
         name: this.props.name,
@@ -121,38 +132,64 @@ module.exports = class extends Generator {
 
     // write block to faces-config.xml
     var projRoot = this.destinationRoot();
-    fs.readFile(path.join(projRoot, odpPath + '/WebContent/WEB-INF/faces-config.xml'), 'utf8', function (err, data) {
-      /* istanbul ignore else */
-      if (err) {
-        log(yosay(
-          chalk.red('Error') + ` getting faces-config.xml content.
+    fs.readFile(
+      path.join(projRoot, odpPath + '/WebContent/WEB-INF/faces-config.xml'),
+      'utf8',
+      function (err, data) {
+        /* istanbul ignore else */
+        if (err) {
+          log(
+            yosay(
+              chalk.red('Error') +
+                ` getting faces-config.xml content.
 You may need to add the relevant definition manually.`
-        ));
-      } else if (data.includes(`<managed-bean-name>${lCaseName}Bean</managed-bean-name>`)) {
+            )
+          );
+        } else if (
+          data.includes(
+            `<managed-bean-name>${lCaseName}Bean</managed-bean-name>`
+          )
+        ) {
           // managed bean already exists, prompt to deconflict
-        log(yosay(
-          chalk.red('Error:') + `a <managed-bean> block with the '${lCaseName}Bean' <managed-bean-name> already exists.
+          log(
+            yosay(
+              chalk.red('Error:') +
+                `a <managed-bean> block with the '${lCaseName}Bean' <managed-bean-name> already exists.
 You should de-conflict your faces-config.xml file manually.`
-        ));
-      } else {
-        let $ = cheerio.load(data, {xmlMode: true});
-        var add = `  <managed-bean>
+            )
+          );
+        } else {
+          let $ = cheerio.load(data, {xmlMode: true});
+          var add = `  <managed-bean>
   <managed-bean-name>${changeCase.camelCase(name)}Bean</managed-bean-name>
   <managed-bean-scope>${scope}</managed-bean-scope>
   <managed-bean-class>${pkg ? pkg + '.' : ''}${name}</managed-bean-class>
 </managed-bean>
 `;
-        $('faces-config').append(add);
-        fs.writeFile(path.join(projRoot, odpPath + '/WebContent/WEB-INF/faces-config.xml'), $.xml(), 'utf8', function (err) {
-          if (err) {
-            throw err;
-          }
-          log(yosay(
-            'The bean\'s class has been created and the ' + chalk.red('faces-config') + ' has been updated!'
-          ));
-        });
+          $('faces-config').append(add);
+          fs.writeFile(
+            path.join(
+              projRoot,
+              odpPath + '/WebContent/WEB-INF/faces-config.xml'
+            ),
+            $.xml(),
+            'utf8',
+            function (err) {
+              if (err) {
+                throw err;
+              }
+              log(
+                yosay(
+                  'The bean\'s class has been created and the ' +
+                    chalk.red('faces-config') +
+                    ' has been updated!'
+                )
+              );
+            }
+          );
+        }
       }
-    });
+    );
   }
 
   install() {

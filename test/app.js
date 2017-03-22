@@ -7,7 +7,8 @@ var testProjName = 'SomeApp';
 describe('generator-xsp:app', function () {
   describe('app without bower or npm deps', function () {
     before(function () {
-      return helpers.run(path.join(__dirname, '../generators/app'))
+      return helpers
+        .run(path.join(__dirname, '../generators/app'))
         .withPrompts({
           name: testProjName,
           basetheme: 'Bootstrap3',
@@ -38,7 +39,8 @@ describe('generator-xsp:app', function () {
 
   describe('app with npm, no bower, with starter theme components', function () {
     before(function () {
-      return helpers.run(path.join(__dirname, '../generators/app'))
+      return helpers
+        .run(path.join(__dirname, '../generators/app'))
         .withOptions({
           name: testProjName
         })
@@ -64,15 +66,14 @@ describe('generator-xsp:app', function () {
         'ODP/Resources/IconNote',
         'package.json'
       ]);
-      assert.noFile([
-        'bower.json'
-      ]);
+      assert.noFile(['bower.json']);
     });
   });
 
   describe('app with bower no npm, alt ODP path', function () {
     before(function () {
-      return helpers.run(path.join(__dirname, '../generators/app'))
+      return helpers
+        .run(path.join(__dirname, '../generators/app'))
         .withOptions({
           name: testProjName,
           'set-odp-path': 'NSF'
@@ -105,7 +106,8 @@ describe('generator-xsp:app', function () {
 
   describe('reconfigure existing app to use given ODP path, via CLI options', function () {
     before(function () {
-      return helpers.run(path.join(__dirname, '../generators/app'))
+      return helpers
+        .run(path.join(__dirname, '../generators/app'))
         .withOptions({
           'set-odp-path': 'NSF',
           'skip-app-init': true
@@ -115,23 +117,23 @@ describe('generator-xsp:app', function () {
 
     it('creates config file with odp option', function () {
       assert.file('.yo-rc.json');
-      assert.fileContent('.yo-rc.json', `{
+      assert.fileContent(
+        '.yo-rc.json',
+        `{
   "generator-xsp": {
     "odpPath": "NSF"
   }
-}`);
-      assert.noFile([
-        '.gitattributes',
-        'ODP/.project',
-        'NSF/.project'
-      ]);
+}`
+      );
+      assert.noFile(['.gitattributes', 'ODP/.project', 'NSF/.project']);
     });
   });
 
   describe('CLI options power invocation', function () {
     describe(' basic setup with bower no npm scripts', function () {
       before(function () {
-        return helpers.run(path.join(__dirname, '../generators/app'))
+        return helpers
+          .run(path.join(__dirname, '../generators/app'))
           .withOptions({
             n: testProjName,
             t: 'webstandard',
@@ -155,14 +157,13 @@ describe('generator-xsp:app', function () {
           'ODP/Code/ScriptLibraries/app.js',
           'ODP/Code/ScriptLibraries/app.jss'
         ]);
-        assert.noFile([
-          'package.json'
-        ]);
+        assert.noFile(['package.json']);
       });
     });
     describe(' basic setup with npm scripts, no bower, starter resources', function () {
       before(function () {
-        return helpers.run(path.join(__dirname, '../generators/app'))
+        return helpers
+          .run(path.join(__dirname, '../generators/app'))
           .withOptions({
             n: testProjName,
             t: 'Bootstrap3',

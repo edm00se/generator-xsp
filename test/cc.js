@@ -6,20 +6,20 @@ const testFileName = 'bar';
 
 describe('generator-xsp:cc', function () {
   before(() => {
-    return helpers.run(path.join(__dirname, '../generators/cc'))
+    return helpers
+      .run(path.join(__dirname, '../generators/cc'))
       .withPrompts({ccname: testFileName})
       .toPromise();
   });
 
   it('creates specified ODP Custom Control file', function () {
-    assert.file([
-      'ODP/CustomControls/' + testFileName + '.xsp'
-    ]);
+    assert.file(['ODP/CustomControls/' + testFileName + '.xsp']);
   });
 
   describe('CLI options power invocation', function () {
     before(function () {
-      return helpers.run(path.join(__dirname, '../generators/cc'))
+      return helpers
+        .run(path.join(__dirname, '../generators/cc'))
         .withOptions({
           name: 'baz'
         })
@@ -27,9 +27,7 @@ describe('generator-xsp:cc', function () {
     });
 
     it('creates proper file structure from specified options', function () {
-      assert.file([
-        'ODP/CustomControls/baz.xsp'
-      ]);
+      assert.file(['ODP/CustomControls/baz.xsp']);
     });
   });
 });

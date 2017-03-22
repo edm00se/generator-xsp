@@ -50,13 +50,10 @@ module.exports = class extends Generator {
         type: 'list',
         name: 'contenttype',
         message: 'What ContentType to use for request + response?',
-        choices: [
-          'application/json',
-          'text/plain',
-          'text/xml'
-        ],
+        choices: ['application/json', 'text/plain', 'text/xml'],
         default: 'application/json',
-        required: function () {/* istanbul ignore next */
+        required: function () {
+          /* istanbul ignore next */
           return undefined === ctx.contenttype;
         },
         store: true,
@@ -66,10 +63,12 @@ module.exports = class extends Generator {
       }
     ];
 
-    return this.prompt(prompts).then(function (props) {
-      // To access props later use this.props.someAnswer;
-      this.props = props;
-    }.bind(this));
+    return this.prompt(prompts).then(
+      function (props) {
+        // To access props later use this.props.someAnswer;
+        this.props = props;
+      }.bind(this)
+    );
   }
 
   // Copy the configuration files
@@ -85,19 +84,25 @@ module.exports = class extends Generator {
       path: changeCase.paramCase(endpoint),
       serviceBeanPkg: 'app.rest',
       serviceBeanPkgClass: 'app.rest.' + changeCase.pascalCase(endpoint),
-      serviceBeanPathClass: 'app/rest/' + changeCase.pascalCase(endpoint) + 'ServiceBean.java',
+      serviceBeanPathClass: 'app/rest/' +
+        changeCase.pascalCase(endpoint) +
+        'ServiceBean.java',
       type: vm.contenttype || vm.props.contenttype
-    };
-    /* istanbul ignore next */ // ignoring as the tests run async and no guarantee of existing api.xsp
-    if (fileExists.sync(vm.destinationPath(odpPath + '/XPages/api.xsp'))) {
-      fs.readFile(vm.destinationPath(odpPath + '/XPages/api.xsp'), 'utf8', function (err, data) {
-        if (err) {
-          throw err;
-        }
-        let $ = cheerio.load(data, {
-          xmlMode: true
-        });
-        const add = ` <xe\\:restService
+    }; // ignoring as the tests run async and no guarantee of existing api.xsp
+    /* istanbul ignore next */ if (
+      fileExists.sync(vm.destinationPath(odpPath + '/XPages/api.xsp'))
+    ) {
+      fs.readFile(
+        vm.destinationPath(odpPath + '/XPages/api.xsp'),
+        'utf8',
+        function (err, data) {
+          if (err) {
+            throw err;
+          }
+          let $ = cheerio.load(data, {
+            xmlMode: true
+          });
+          const add = ` <xe\\:restService
 id="${opt.path}"
 pathInfo="${opt.svcName}"
 state="false">
@@ -109,26 +114,39 @@ state="false">
 	</xe\\:customRestService>
 </xe\\:this.service>
 </xe\\:restService>`;
-        $('xp\\:view').append(add);
-        fs.writeFile(vm.destinationPath(odpPath + '/XPages/api.xsp'), $.xml().replace(/\\/gmi, ''), 'utf8', function (er) {
-          if (er) {
-            throw er;
-          }
-          log('The ' + chalk.red('api.xsp') + ' has been updated!');
-        });
-      });
+          $('xp\\:view').append(add);
+          fs.writeFile(
+            vm.destinationPath(odpPath + '/XPages/api.xsp'),
+            $.xml().replace(/\\/gmi, ''),
+            'utf8',
+            function (er) {
+              if (er) {
+                throw er;
+              }
+              log('The ' + chalk.red('api.xsp') + ' has been updated!');
+            }
+          );
+        }
+      );
     } else {
       // new api.xsp needed
       vm.fs.copyTpl(
         vm.templatePath('api.xsp'),
-        vm.destinationPath(odpPath + '/XPages/api.xsp'), opt
+        vm.destinationPath(odpPath + '/XPages/api.xsp'),
+        opt
       );
     }
     vm.fs.copyTpl(
       vm.templatePath('./_serviceBean.java'),
-      vm.destinationPath(odpPath + '/Code/Java/' + opt.serviceBeanPathClass), opt
+      vm.destinationPath(odpPath + '/Code/Java/' + opt.serviceBeanPathClass),
+      opt
     );
-    vm.log(yosay(chalk.red('Done') + ` creating the ${vm.endpoint || vm.props.endpoint} as a Custom Rest Service via Service Bean.`));
+    vm.log(
+      yosay(
+        chalk.red('Done') +
+          ` creating the ${vm.endpoint || vm.props.endpoint} as a Custom Rest Service via Service Bean.`
+      )
+    );
   }
 
   install() {

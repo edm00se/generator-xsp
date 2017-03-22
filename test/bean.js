@@ -9,12 +9,13 @@ describe('generator-xsp:bean', function () {
     const modifier = '1';
 
     before(function () {
-      return helpers.run(path.join(__dirname, '../generators/bean'))
-      .withPrompts({
-        scope: 'viewScope',
-        name: testName + modifier
-      })
-      .toPromise();
+      return helpers
+        .run(path.join(__dirname, '../generators/bean'))
+        .withPrompts({
+          scope: 'viewScope',
+          name: testName + modifier
+        })
+        .toPromise();
     });
 
     it('creates specified ODP Java class file', function () {
@@ -28,7 +29,8 @@ describe('generator-xsp:bean', function () {
     const modifier = '6';
 
     before(function () {
-      return helpers.run(path.join(__dirname, '../generators/bean'))
+      return helpers
+        .run(path.join(__dirname, '../generators/bean'))
         .withOptions({
           name: testName + modifier,
           scope: 'session'
@@ -37,10 +39,11 @@ describe('generator-xsp:bean', function () {
     });
 
     it('creates proper file structure from specified options', function () {
-      const fPath = 'ODP/Code/Java/' + testName.replace(/\./g, '/') + modifier + '.java';
-      assert.file([
-        fPath
-      ]);
+      const fPath = 'ODP/Code/Java/' +
+        testName.replace(/\./g, '/') +
+        modifier +
+        '.java';
+      assert.file([fPath]);
     });
   });
 });

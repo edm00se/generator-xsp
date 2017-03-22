@@ -12,7 +12,8 @@ describe('generator-xsp:rest', function () {
     const fName = 'ODP/Code/Java/app/rest/' + myProperName + 'ServiceBean.java';
 
     before(() => {
-      return helpers.run(path.join(__dirname, '../generators/rest'))
+      return helpers
+        .run(path.join(__dirname, '../generators/rest'))
         .withPrompts({
           endpoint: myName,
           contenttype: 'application/json'
@@ -21,9 +22,7 @@ describe('generator-xsp:rest', function () {
     });
 
     it('creates specified CustomServiceBean Java class file', () => {
-      assert.file([
-        fName
-      ]);
+      assert.file([fName]);
 
       assert.fileContent(fName, 'extends CustomServiceBean');
     });
@@ -39,7 +38,10 @@ describe('generator-xsp:rest', function () {
 
     it('defines use of the CustomServiceBean', () => {
       assert.fileContent(apiXpg, '<xe:customRestService');
-      assert.fileContent(apiXpg, `serviceBean="app.rest.${myProperName}ServiceBean"`);
+      assert.fileContent(
+        apiXpg,
+        `serviceBean="app.rest.${myProperName}ServiceBean"`
+      );
     });
   });
 
@@ -49,7 +51,8 @@ describe('generator-xsp:rest', function () {
     const fName = 'ODP/Code/Java/app/rest/' + myProperName + 'ServiceBean.java';
 
     before(() => {
-      return helpers.run(path.join(__dirname, '../generators/rest'))
+      return helpers
+        .run(path.join(__dirname, '../generators/rest'))
         .withPrompts({
           endpoint: myName,
           contenttype: 'application/json'
@@ -58,9 +61,7 @@ describe('generator-xsp:rest', function () {
     });
 
     it('creates specified CustomServiceBean Java class file', () => {
-      assert.file([
-        fName
-      ]);
+      assert.file([fName]);
 
       assert.fileContent(fName, 'extends CustomServiceBean');
     });
@@ -76,7 +77,10 @@ describe('generator-xsp:rest', function () {
 
     it('defines use of the CustomServiceBean', () => {
       assert.fileContent(apiXpg, '<xe:customRestService');
-      assert.fileContent(apiXpg, `serviceBean="app.rest.${myProperName}ServiceBean"`);
+      assert.fileContent(
+        apiXpg,
+        `serviceBean="app.rest.${myProperName}ServiceBean"`
+      );
     });
   });
 
@@ -86,7 +90,8 @@ describe('generator-xsp:rest', function () {
     const fName = 'ODP/Code/Java/app/rest/' + myProperName + 'ServiceBean.java';
 
     before(function () {
-      return helpers.run(path.join(__dirname, '../generators/rest'))
+      return helpers
+        .run(path.join(__dirname, '../generators/rest'))
         .withOptions({
           endpoint: myName,
           contenttype: 'text/plain'
@@ -95,9 +100,7 @@ describe('generator-xsp:rest', function () {
     });
 
     it('creates specified CustomServiceBean Java class file', () => {
-      assert.file([
-        fName
-      ]);
+      assert.file([fName]);
 
       assert.fileContent(fName, 'extends CustomServiceBean');
     });
@@ -113,7 +116,10 @@ describe('generator-xsp:rest', function () {
 
     it('defines use of the CustomServiceBean', () => {
       assert.fileContent(apiXpg, '<xe:customRestService');
-      assert.fileContent(apiXpg, `serviceBean="app.rest.${myProperName}ServiceBean"`);
+      assert.fileContent(
+        apiXpg,
+        `serviceBean="app.rest.${myProperName}ServiceBean"`
+      );
     });
   });
 });

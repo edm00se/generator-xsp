@@ -26,19 +26,23 @@ module.exports = class extends Generator {
     updateNotifier({pkg}).notify();
     const ctx = this;
     updateNotifier({pkg}).notify();
-    var prompts = [{
-      type: 'input',
-      name: 'ccname',
-      message: 'What shall we call your new Custom Control?',
-      when: function () {
-        return undefined === ctx.ccname;
+    var prompts = [
+      {
+        type: 'input',
+        name: 'ccname',
+        message: 'What shall we call your new Custom Control?',
+        when: function () {
+          return undefined === ctx.ccname;
+        }
       }
-    }];
+    ];
 
-    return this.prompt(prompts).then(function (props) {
-      // To access props later use this.props.someAnswer;
-      this.props = props;
-    }.bind(this));
+    return this.prompt(prompts).then(
+      function (props) {
+        // To access props later use this.props.someAnswer;
+        this.props = props;
+      }.bind(this)
+    );
   }
 
   // Writing Logic
@@ -48,11 +52,17 @@ module.exports = class extends Generator {
     var tmpName = _.camelCase(this.ccname) || this.props.ccname;
     this.fs.copyTpl(
       this.templatePath('_some.xsp'),
-      this.destinationPath(odpPath + '/CustomControls/' + tmpName + '.xsp'), {
+      this.destinationPath(odpPath + '/CustomControls/' + tmpName + '.xsp'),
+      {
         name: tmpName
       }
     );
 
-    this.log(yosay(chalk.red('Done') + ` creating the ${this.ccname || this.props.ccname} Custom Control.`));
+    this.log(
+      yosay(
+        chalk.red('Done') +
+          ` creating the ${this.ccname || this.props.ccname} Custom Control.`
+      )
+    );
   }
 };

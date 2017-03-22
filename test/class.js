@@ -12,7 +12,8 @@ function common(mod, serialize) {
     if (serialize) {
       conf.serializable = true;
     }
-    return helpers.run(path.join(__dirname, '../generators/class'))
+    return helpers
+      .run(path.join(__dirname, '../generators/class'))
       .withPrompts(conf)
       .toPromise();
   };
@@ -41,7 +42,9 @@ describe('generator-xsp:class', function () {
         'ODP/Code/Java/' + testName.replace(/\./g, '/') + modifier + '.java'
       ]);
 
-      const tmpBuf = fs.readFileSync('ODP/Code/Java/' + testName.replace(/\./g, '/') + modifier + '.java');
+      const tmpBuf = fs.readFileSync(
+        'ODP/Code/Java/' + testName.replace(/\./g, '/') + modifier + '.java'
+      );
       assert(tmpBuf.toString().includes('implements Serializable'));
     });
   });
@@ -86,7 +89,8 @@ describe('generator-xsp:class', function () {
     const modifier = '6';
 
     before(function () {
-      return helpers.run(path.join(__dirname, '../generators/class'))
+      return helpers
+        .run(path.join(__dirname, '../generators/class'))
         .withOptions({
           name: testName + modifier,
           visibility: 'public',
@@ -96,10 +100,11 @@ describe('generator-xsp:class', function () {
     });
 
     it('creates proper file structure from specified options', function () {
-      const fPath = 'ODP/Code/Java/' + testName.replace(/\./g, '/') + modifier + '.java';
-      assert.file([
-        fPath
-      ]);
+      const fPath = 'ODP/Code/Java/' +
+        testName.replace(/\./g, '/') +
+        modifier +
+        '.java';
+      assert.file([fPath]);
 
       const tmpBuf = fs.readFileSync(fPath);
       assert(tmpBuf.toString().includes('implements Serializable'));
