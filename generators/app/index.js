@@ -379,7 +379,7 @@ module.exports = class extends Generator {
       this.destinationPath(this.odpPath + '/Resources/Themes/app.theme'),
       {
         basetheme: this.props.basetheme,
-        starterResources: this.props.starterResources || this.starterResources
+        starterResources: (this.props.starterResources === true || this.starterResources)
       }
     );
     this.fs.copyTpl(
