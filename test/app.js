@@ -20,7 +20,7 @@ describe('generator-xsp:app', function () {
         .toPromise();
     });
 
-    it('creates base ODP files without bower or npm', function () {
+    it('creates base ODP files without bower, npm, or starter resources', function () {
       assert.file([
         'ODP/.project',
         'ODP/AppProperties/database.properties',
@@ -34,6 +34,9 @@ describe('generator-xsp:app', function () {
         'package.json',
         'bower.json'
       ]);
+      assert.noFileContent('ODP/Resources/Themes/app.theme', 'app.css');
+      assert.noFileContent('ODP/Resources/Themes/app.theme', 'app.js');
+      assert.noFileContent('ODP/Resources/Themes/app.theme', 'app.jss');
     });
   });
 
@@ -67,6 +70,9 @@ describe('generator-xsp:app', function () {
         'package.json'
       ]);
       assert.noFile(['bower.json']);
+      assert.fileContent('ODP/Resources/Themes/app.theme', 'app.css');
+      assert.fileContent('ODP/Resources/Themes/app.theme', 'app.js');
+      assert.fileContent('ODP/Resources/Themes/app.theme', 'app.jss');
     });
   });
 

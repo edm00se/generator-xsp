@@ -244,16 +244,9 @@ module.exports = class extends Generator {
             value: 'org.openntf.junit4xpages.Library'
           }
         ],
-        /* istanbul ignore next */
         default: function (answerOb) {
-          const altAr = [];
-          if (
-            answerOb.basetheme === 'Bootstrap3' ||
-            answerOb.baseTheme === 'Bootstrap3_flat'
-          ) {
-            altAr.push('com.ibm.xsp.extlib.library');
-          }
-          return altAr;
+          /* istanbul ignore next */
+          return (answerOb.basetheme === 'Bootstrap3' || answerOb.baseTheme === 'Bootstrap3_flat') ? ['com.ibm.xsp.extlib.library'] : [];
         },
         store: true,
         when: function () {
@@ -379,7 +372,7 @@ module.exports = class extends Generator {
       this.destinationPath(this.odpPath + '/Resources/Themes/app.theme'),
       {
         basetheme: this.props.basetheme,
-        starterResources: this.props.starterResources || this.starterResources
+        starterResources: (this.props.starterResources === true || this.starterResources)
       }
     );
     this.fs.copyTpl(
