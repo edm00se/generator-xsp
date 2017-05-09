@@ -48,6 +48,7 @@
     "husky": "0.13.3",
     "jest": "20.0.0",
     "lint-staged": "3.4.1",
+    "nsp": "2.6.3",
     "prettier-eslint-cli": "3.4.3",
     "semantic-release": "6.3.6",
     "yeoman-assert": "3.0.0",
@@ -66,12 +67,13 @@
     "add": "all-contributors add",
     "generate": "all-contributors generate",
     "test": "jest --coverage",
-    "watch": "jest --watch",
+    "watch": "jest --watchAll --coverage",
     "format": "prettier-eslint \"generators/**/*.js\" \"__tests__/*.js\" --write",
     "lint": "eslint generators/**/*.js __tests__/*.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "precommit": "lint-staged && npm run test",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "prepublish": "nsp check"
   },
   "license": "MIT",
   "lint-staged": {
