@@ -39,10 +39,8 @@ describe('generator-xsp:bean', function () {
     });
 
     it('creates proper file structure from specified options', function () {
-      const fPath = 'ODP/Code/Java/' +
-        testName.replace(/\./g, '/') +
-        modifier +
-        '.java';
+      const fPath =
+        'ODP/Code/Java/' + testName.replace(/\./g, '/') + modifier + '.java';
       assert.file([fPath]);
     });
   });

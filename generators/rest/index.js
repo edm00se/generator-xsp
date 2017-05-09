@@ -117,7 +117,7 @@ state="false">
           $('xp\\:view').append(add);
           fs.writeFile(
             vm.destinationPath(odpPath + '/XPages/api.xsp'),
-            $.xml().replace(/\\/gmi, ''),
+            $.xml().replace(/\\/gim, ''),
             'utf8',
             function (er) {
               if (er) {

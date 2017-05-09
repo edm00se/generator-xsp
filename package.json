@@ -45,17 +45,10 @@
     "eslint": "3.18.0",
     "eslint-config-xo-space": "0.15.0",
     "eslint-formatter-pretty": "1.1.0",
-    "gulp": "3.9.1",
-    "gulp-codecov": "2.0.2",
-    "gulp-eslint": "3.0.1",
-    "gulp-exclude-gitignore": "1.1.1",
-    "gulp-istanbul": "1.1.1",
-    "gulp-line-ending-corrector": "1.0.1",
-    "gulp-mocha": "3.0.1",
-    "gulp-nsp": "2.4.2",
-    "gulp-plumber": "1.1.0",
     "husky": "0.13.3-0",
     "jest": "20.0.0",
+    "lint-staged": "3.4.1",
+    "prettier-eslint-cli": "3.4.3",
     "semantic-release": "6.3.6",
     "yeoman-assert": "3.0.0",
     "yeoman-test": "1.6.0"
@@ -72,17 +65,29 @@
   "scripts": {
     "add": "all-contributors add",
     "generate": "all-contributors generate",
-    "prepublish": "gulp prepublish",
     "test": "jest --coverage",
     "watch": "jest --watch",
-    "gulp:test": "gulp",
-    "gulp:watch": "gulp watch",
+    "format": "prettier-eslint \"generators/**/*.js\" \"__tests__/*.js\" --write",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "precommit": "npm run test",
+    "precommit": "lint-staged && npm run test",
     "commit": "git-cz"
   },
   "license": "MIT",
+  "lint-staged": {
+    "*.js": [
+      "prettier-eslint --write",
+      "git add"
+    ]
+  },
   "jest": {
-    "verbose": true
+    "testEnvironment": "node",
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 90,
+        "lines": 100,
+        "statements": 100
+      }
+    }
   }
 }
