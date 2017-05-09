@@ -19,6 +19,15 @@
         "infra",
         "example"
       ]
+    },
+    {
+      "login": "zeromancer1972",
+      "name": "Oliver Busse",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/4763327?v=3",
+      "profile": "http://oliverbusse.com",
+      "contributions": [
+        "bug"
+      ]
     }
   ]
 }

@@ -2,7 +2,7 @@
 
 > a [yeoman](http://yeoman.io/) generator to scaffold an XPages runtime (xsp) compliant On Disk Project (ODP)
 
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage Status][codecov-image]][codecov-url] [![Codacy Badge][codacy-image]][codacy-url] [![semantic-release][semantic-release-image]][semantic-release-url] [![npm][npm-license]][npm-url] [![PRs Welcome][prs-badge]][prs] [![Roadmap][roadmap-badge]][roadmap] [![Issues][waffle-img]][waffle-link] [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg)](#contributors)
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage Status][codecov-image]][codecov-url] [![Codacy Badge][codacy-image]][codacy-url] [![semantic-release][semantic-release-image]][semantic-release-url] [![npm][npm-license]][npm-url] [![PRs Welcome][prs-badge]][prs] [![Roadmap][roadmap-badge]][roadmap] [![Issues][waffle-img]][waffle-link] [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 
 [![NPM badge][npm-badge]][npm-url]
 
@@ -57,8 +57,8 @@ Feel free to report bugs [in Issues](https://github.com/edm00se/generator-xsp/is
 Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-| [<img src="https://avatars.githubusercontent.com/u/622118?v=3" width="100px;"/><br /><sub>Eric McCormick</sub>](https://ericmccormick.io)<br />[💻](https://github.com/edm00se/generator-xsp/commits?author=edm00se) [📖](https://github.com/edm00se/generator-xsp/commits?author=edm00se) [⚠️](https://github.com/edm00se/generator-xsp/commits?author=edm00se) 🚇 💡 |
-| :---: |
+| [<img src="https://avatars.githubusercontent.com/u/622118?v=3" width="100px;"/><br /><sub>Eric McCormick</sub>](https://ericmccormick.io)<br />[💻](https://github.com/edm00se/generator-xsp/commits?author=edm00se "Code") [📖](https://github.com/edm00se/generator-xsp/commits?author=edm00se "Documentation") [⚠️](https://github.com/edm00se/generator-xsp/commits?author=edm00se "Tests") [🚇](#infra-edm00se "Infrastructure (Hosting, Build-Tools, etc)") [💡](#example-edm00se "Examples") | [<img src="https://avatars0.githubusercontent.com/u/4763327?v=3" width="100px;"/><br /><sub>Oliver Busse</sub>](http://oliverbusse.com)<br />[🐛](https://github.com/edm00se/generator-xsp/issues?q=author%3Azeromancer1972 "Bug reports") |
+| :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
