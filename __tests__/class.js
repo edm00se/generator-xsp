@@ -23,7 +23,7 @@ describe('generator-xsp:class', function () {
   describe('public', function () {
     const modifier = '1';
 
-    before(common(modifier));
+    beforeEach(common(modifier));
 
     it('creates specified ODP Java class file', function () {
       assert.file([
@@ -35,7 +35,7 @@ describe('generator-xsp:class', function () {
   describe('default (public), checking for Serializable', function () {
     const modifier = '2';
 
-    before(common(modifier, true));
+    beforeEach(common(modifier, true));
 
     it('creates specified ODP Java class file', function () {
       assert.file([
@@ -52,7 +52,7 @@ describe('generator-xsp:class', function () {
   describe('protected', function () {
     const modifier = '3';
 
-    before(common(modifier));
+    beforeEach(common(modifier));
 
     it('creates specified ODP Java class file', function () {
       assert.file([
@@ -64,7 +64,7 @@ describe('generator-xsp:class', function () {
   describe('private', function () {
     const modifier = '4';
 
-    before(common(modifier));
+    beforeEach(common(modifier));
 
     it('creates specified ODP Java class file', function () {
       assert.file([
@@ -76,7 +76,7 @@ describe('generator-xsp:class', function () {
   describe('no modifier', function () {
     const modifier = '5';
 
-    before(common(modifier));
+    beforeEach(common(modifier));
 
     it('creates specified ODP Java class file', function () {
       assert.file([
@@ -88,7 +88,7 @@ describe('generator-xsp:class', function () {
   describe('CLI options power invocation', function () {
     const modifier = '6';
 
-    before(function () {
+    beforeEach(function () {
       return helpers
         .run(path.join(__dirname, '../generators/class'))
         .withOptions({
@@ -100,10 +100,8 @@ describe('generator-xsp:class', function () {
     });
 
     it('creates proper file structure from specified options', function () {
-      const fPath = 'ODP/Code/Java/' +
-        testName.replace(/\./g, '/') +
-        modifier +
-        '.java';
+      const fPath =
+        'ODP/Code/Java/' + testName.replace(/\./g, '/') + modifier + '.java';
       assert.file([fPath]);
 
       const tmpBuf = fs.readFileSync(fPath);

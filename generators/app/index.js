@@ -214,10 +214,12 @@ module.exports = class extends Generator {
         name: 'ddeplugins',
         message: function (answerOb) {
           let str = 'What plugins should be included?';
-          const condition = answerOb.basetheme === 'Bootstrap3' ||
+          const condition =
+            answerOb.basetheme === 'Bootstrap3' ||
             answerOb.basetheme === 'Bootstrap3_flat';
           if (condition) {
-            str += '\n  🍰  ExtLib pre-selected in order to extend ' +
+            str +=
+              '\n  🍰  ExtLib pre-selected in order to extend ' +
               answerOb.basetheme;
           }
           return str;
@@ -246,7 +248,10 @@ module.exports = class extends Generator {
         ],
         default: function (answerOb) {
           /* istanbul ignore next */
-          return (answerOb.basetheme === 'Bootstrap3' || answerOb.baseTheme === 'Bootstrap3_flat') ? ['com.ibm.xsp.extlib.library'] : [];
+          return answerOb.basetheme === 'Bootstrap3' ||
+            answerOb.baseTheme === 'Bootstrap3_flat' ?
+            ['com.ibm.xsp.extlib.library'] :
+            [];
         },
         store: true,
         when: function () {
@@ -372,7 +377,8 @@ module.exports = class extends Generator {
       this.destinationPath(this.odpPath + '/Resources/Themes/app.theme'),
       {
         basetheme: this.props.basetheme,
-        starterResources: (this.props.starterResources === true || this.starterResources)
+        starterResources: this.props.starterResources === true ||
+          this.starterResources
       }
     );
     this.fs.copyTpl(
@@ -415,7 +421,7 @@ module.exports = class extends Generator {
       depOpt.npm = true;
     }
     if (depOpt.bower === false && depOpt.npm === false) {
-      // intentionally left blank
+      // Intentionally left blank
     } else {
       this.installDependencies(depOpt);
     }

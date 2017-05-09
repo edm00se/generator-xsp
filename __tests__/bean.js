@@ -8,7 +8,7 @@ describe('generator-xsp:bean', function () {
   describe('viewScope bean', function () {
     const modifier = '1';
 
-    before(function () {
+    beforeEach(function () {
       return helpers
         .run(path.join(__dirname, '../generators/bean'))
         .withPrompts({
@@ -28,7 +28,7 @@ describe('generator-xsp:bean', function () {
   describe('CLI options power invocation', function () {
     const modifier = '6';
 
-    before(function () {
+    beforeEach(function () {
       return helpers
         .run(path.join(__dirname, '../generators/bean'))
         .withOptions({
@@ -39,10 +39,8 @@ describe('generator-xsp:bean', function () {
     });
 
     it('creates proper file structure from specified options', function () {
-      const fPath = 'ODP/Code/Java/' +
-        testName.replace(/\./g, '/') +
-        modifier +
-        '.java';
+      const fPath =
+        'ODP/Code/Java/' + testName.replace(/\./g, '/') + modifier + '.java';
       assert.file([fPath]);
     });
   });

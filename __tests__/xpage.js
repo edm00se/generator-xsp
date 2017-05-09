@@ -5,7 +5,7 @@ const helpers = require('yeoman-test');
 const testFileName = 'foo';
 
 describe('generator-xsp:xpage', function () {
-  before(function () {
+  beforeEach(function () {
     return helpers
       .run(path.join(__dirname, '../generators/xpage'))
       .withPrompts({xpagename: testFileName})
@@ -17,7 +17,7 @@ describe('generator-xsp:xpage', function () {
   });
 
   describe('CLI options power invocation', function () {
-    before(function () {
+    beforeEach(function () {
       return helpers
         .run(path.join(__dirname, '../generators/xpage'))
         .withOptions({

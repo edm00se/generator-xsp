@@ -77,7 +77,7 @@ module.exports = class extends Generator {
     const vm = this;
     const log = vm.log;
     const endpoint = changeCase.camelCase(vm.endpoint) || vm.props.endpoint;
-    // define templating vars
+    // Define templating vars
     const opt = {
       svcName: endpoint,
       propName: changeCase.pascalCase(endpoint),
@@ -88,10 +88,9 @@ module.exports = class extends Generator {
         changeCase.pascalCase(endpoint) +
         'ServiceBean.java',
       type: vm.contenttype || vm.props.contenttype
-    }; // ignoring as the tests run async and no guarantee of existing api.xsp
-    /* istanbul ignore next */ if (
-      fileExists.sync(vm.destinationPath(odpPath + '/XPages/api.xsp'))
-    ) {
+    }; // Ignoring as the tests run async and no guarantee of existing api.xsp
+    /* istanbul ignore next */
+    if (fileExists.sync(vm.destinationPath(odpPath + '/XPages/api.xsp'))) {
       fs.readFile(
         vm.destinationPath(odpPath + '/XPages/api.xsp'),
         'utf8',
@@ -117,7 +116,7 @@ state="false">
           $('xp\\:view').append(add);
           fs.writeFile(
             vm.destinationPath(odpPath + '/XPages/api.xsp'),
-            $.xml().replace(/\\/gmi, ''),
+            $.xml().replace(/\\/gim, ''),
             'utf8',
             function (er) {
               if (er) {
@@ -129,7 +128,7 @@ state="false">
         }
       );
     } else {
-      // new api.xsp needed
+      // New api.xsp needed
       vm.fs.copyTpl(
         vm.templatePath('api.xsp'),
         vm.destinationPath(odpPath + '/XPages/api.xsp'),
@@ -149,7 +148,5 @@ state="false">
     );
   }
 
-  install() {
-    // this.installDependencies();
-  }
+  install() {}
 };
