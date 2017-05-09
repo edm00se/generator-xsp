@@ -6,7 +6,7 @@ var testProjName = 'SomeApp';
 
 describe('generator-xsp:app', function () {
   describe('app without bower or npm deps', function () {
-    before(function () {
+    beforeEach(function () {
       return helpers
         .run(path.join(__dirname, '../generators/app'))
         .withPrompts({
@@ -41,7 +41,7 @@ describe('generator-xsp:app', function () {
   });
 
   describe('app with npm, no bower, with starter theme components', function () {
-    before(function () {
+    beforeEach(function () {
       return helpers
         .run(path.join(__dirname, '../generators/app'))
         .withOptions({
@@ -77,7 +77,7 @@ describe('generator-xsp:app', function () {
   });
 
   describe('app with bower no npm, alt ODP path', function () {
-    before(function () {
+    beforeEach(function () {
       return helpers
         .run(path.join(__dirname, '../generators/app'))
         .withOptions({
@@ -111,7 +111,7 @@ describe('generator-xsp:app', function () {
   });
 
   describe('reconfigure existing app to use given ODP path, via CLI options', function () {
-    before(function () {
+    beforeEach(function () {
       return helpers
         .run(path.join(__dirname, '../generators/app'))
         .withOptions({
@@ -137,7 +137,7 @@ describe('generator-xsp:app', function () {
 
   describe('CLI options power invocation', function () {
     describe(' basic setup with bower no npm scripts', function () {
-      before(function () {
+      beforeEach(function () {
         return helpers
           .run(path.join(__dirname, '../generators/app'))
           .withOptions({
@@ -167,7 +167,7 @@ describe('generator-xsp:app', function () {
       });
     });
     describe(' basic setup with npm scripts, no bower, starter resources', function () {
-      before(function () {
+      beforeEach(function () {
         return helpers
           .run(path.join(__dirname, '../generators/app'))
           .withOptions({

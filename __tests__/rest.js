@@ -11,7 +11,7 @@ describe('generator-xsp:rest', function () {
     const myProperName = changeCase.pascalCase(myName);
     const fName = 'ODP/Code/Java/app/rest/' + myProperName + 'ServiceBean.java';
 
-    before(() => {
+    beforeEach(() => {
       return helpers
         .run(path.join(__dirname, '../generators/rest'))
         .withPrompts({
@@ -50,7 +50,7 @@ describe('generator-xsp:rest', function () {
     const myProperName = changeCase.pascalCase(myName);
     const fName = 'ODP/Code/Java/app/rest/' + myProperName + 'ServiceBean.java';
 
-    before(() => {
+    beforeEach(() => {
       return helpers
         .run(path.join(__dirname, '../generators/rest'))
         .withPrompts({
@@ -89,7 +89,7 @@ describe('generator-xsp:rest', function () {
     const myProperName = changeCase.pascalCase(myName);
     const fName = 'ODP/Code/Java/app/rest/' + myProperName + 'ServiceBean.java';
 
-    before(function () {
+    beforeEach(function () {
       return helpers
         .run(path.join(__dirname, '../generators/rest'))
         .withOptions({

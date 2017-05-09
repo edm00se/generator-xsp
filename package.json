@@ -55,6 +55,7 @@
     "gulp-nsp": "2.4.2",
     "gulp-plumber": "1.1.0",
     "husky": "0.13.3-0",
+    "jest": "20.0.0",
     "semantic-release": "6.3.6",
     "yeoman-assert": "3.0.0",
     "yeoman-test": "1.6.0"
@@ -72,12 +73,16 @@
     "add": "all-contributors add",
     "generate": "all-contributors generate",
     "prepublish": "gulp prepublish",
-    "test": "gulp",
-    "watch": "gulp watch",
+    "test": "jest --coverage",
+    "watch": "jest --watch",
+    "gulp:test": "gulp",
+    "gulp:watch": "gulp watch",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "precommit": "npm run test",
-    "commit": "git-cz",
-    "coveralls": "istanbul check-coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js || true"
+    "commit": "git-cz"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "jest": {
+    "verbose": true
+  }
 }
