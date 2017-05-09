@@ -421,7 +421,7 @@ module.exports = class extends Generator {
       depOpt.npm = true;
     }
     if (depOpt.bower === false && depOpt.npm === false) {
-      // intentionally left blank
+      // Intentionally left blank
     } else {
       this.installDependencies(depOpt);
     }

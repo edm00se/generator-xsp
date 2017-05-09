@@ -130,7 +130,7 @@ module.exports = class extends Generator {
       }
     );
 
-    // write block to faces-config.xml
+    // Write block to faces-config.xml
     var projRoot = this.destinationRoot();
     fs.readFile(
       path.join(projRoot, odpPath + '/WebContent/WEB-INF/faces-config.xml'),
@@ -150,7 +150,7 @@ You may need to add the relevant definition manually.`
             `<managed-bean-name>${lCaseName}Bean</managed-bean-name>`
           )
         ) {
-          // managed bean already exists, prompt to deconflict
+          // Managed bean already exists, prompt to deconflict
           log(
             yosay(
               chalk.red('Error:') +
@@ -192,7 +192,5 @@ You should de-conflict your faces-config.xml file manually.`
     );
   }
 
-  install() {
-    // this.installDependencies();
-  }
+  install() {}
 };
