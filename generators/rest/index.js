@@ -15,7 +15,8 @@ module.exports = class extends Generator {
     super(args, opts);
 
     this.option('endpoint', {
-      desc: 'the name to give the newly created RESTful endpoint (ex: "todos" will yield `api.xsp/todos`)',
+      desc:
+        'the name to give the newly created RESTful endpoint (ex: "todos" will yield `api.xsp/todos`)',
       type: String,
       alias: 'e'
     });
@@ -24,7 +25,8 @@ module.exports = class extends Generator {
     }
 
     this.option('contenttype', {
-      desc: 'the content-type to use, such as "application/json", "text/plain", etc.',
+      desc:
+        'the content-type to use, such as "application/json", "text/plain", etc.',
       type: String,
       alias: 't'
     });
@@ -84,9 +86,8 @@ module.exports = class extends Generator {
       path: changeCase.paramCase(endpoint),
       serviceBeanPkg: 'app.rest',
       serviceBeanPkgClass: 'app.rest.' + changeCase.pascalCase(endpoint),
-      serviceBeanPathClass: 'app/rest/' +
-        changeCase.pascalCase(endpoint) +
-        'ServiceBean.java',
+      serviceBeanPathClass:
+        'app/rest/' + changeCase.pascalCase(endpoint) + 'ServiceBean.java',
       type: vm.contenttype || vm.props.contenttype
     }; // Ignoring as the tests run async and no guarantee of existing api.xsp
     /* istanbul ignore next */
@@ -143,7 +144,8 @@ state="false">
     vm.log(
       yosay(
         chalk.red('Done') +
-          ` creating the ${vm.endpoint || vm.props.endpoint} as a Custom Rest Service via Service Bean.`
+          ` creating the ${vm.endpoint ||
+            vm.props.endpoint} as a Custom Rest Service via Service Bean.`
       )
     );
   }

@@ -22,7 +22,8 @@ module.exports = class extends Generator {
     }
 
     this.option('basetheme', {
-      desc: 'the base theme for the app.theme to extend (ex: webstandard, Bootstrap3, etc.)',
+      desc:
+        'the base theme for the app.theme to extend (ex: webstandard, Bootstrap3, etc.)',
       type: String,
       alias: 't'
     });
@@ -37,7 +38,8 @@ module.exports = class extends Generator {
       alias: 'r'
     });
     this.option('skip-starter-resources', {
-      desc: 'skips inclusion of starter CSS, JS, SSJS files (use instead of --starter-resources)',
+      desc:
+        'skips inclusion of starter CSS, JS, SSJS files (use instead of --starter-resources)',
       type: Boolean,
       alias: 'no-res'
     });
@@ -111,7 +113,8 @@ module.exports = class extends Generator {
     }
 
     this.option('use-npm', {
-      desc: 'opts-in to using npm for dependency management and adds a dora cleaning script to package.json',
+      desc:
+        'opts-in to using npm for dependency management and adds a dora cleaning script to package.json',
       type: Boolean,
       alias: 'npm'
     });
@@ -202,7 +205,8 @@ module.exports = class extends Generator {
       {
         type: 'confirm',
         name: 'starterResources',
-        message: 'Would you like to include some starter resources in your theme (app file for CSS, JS, SSJS)?',
+        message:
+          'Would you like to include some starter resources in your theme (app file for CSS, JS, SSJS)?',
         default: true,
         store: true,
         when: function () {
@@ -377,8 +381,8 @@ module.exports = class extends Generator {
       this.destinationPath(this.odpPath + '/Resources/Themes/app.theme'),
       {
         basetheme: this.props.basetheme,
-        starterResources: this.props.starterResources === true ||
-          this.starterResources
+        starterResources:
+          this.props.starterResources === true || this.starterResources
       }
     );
     this.fs.copyTpl(
