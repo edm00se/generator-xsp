@@ -16,7 +16,8 @@ module.exports = class extends Generator {
     super(args, opts);
 
     this.option('name', {
-      desc: 'the name, in Pascal case (aka- UpperCamelCase), to give the newly created managed bean',
+      desc:
+        'the name, in Pascal case (aka- UpperCamelCase), to give the newly created managed bean',
       type: String,
       alias: 'n'
     });

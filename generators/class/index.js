@@ -13,7 +13,8 @@ module.exports = class extends Generator {
     super(args, opts);
 
     this.option('name', {
-      desc: 'the name, in Pascal case (aka- UpperCamelCase), to give the newly created Class',
+      desc:
+        'the name, in Pascal case (aka- UpperCamelCase), to give the newly created Class',
       type: String,
       alias: 'n'
     });
