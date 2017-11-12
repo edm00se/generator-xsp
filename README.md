@@ -1,10 +1,11 @@
-# generator-xsp
+<div align="center">
+<h1>generator-xsp</h1>
+<pre><code>yo xsp</code></pre>
+</div>
 
 > a [yeoman](http://yeoman.io/) generator to scaffold an XPages runtime (xsp) compliant On Disk Project (ODP)
 
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage Status][codecov-image]][codecov-url] [![Codacy Badge][codacy-image]][codacy-url] [![semantic-release][semantic-release-image]][semantic-release-url] [![npm][npm-license]][npm-url] [![PRs Welcome][prs-badge]][prs] [![Roadmap][roadmap-badge]][roadmap] [![Issues][waffle-img]][waffle-link] [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
-
-[![NPM badge][npm-badge]][npm-url]
 
 ## Installation
 
@@ -57,7 +58,7 @@ Feel free to report bugs [in Issues](https://github.com/edm00se/generator-xsp/is
 Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-| [<img src="https://avatars0.githubusercontent.com/u/622118?v=3" width="100px;"/><br /><sub>Eric McCormick</sub>](https://ericmccormick.io)<br />[💬](#question-edm00se "Answering Questions") [📝](#blog-edm00se "Blogposts") [🐛](https://github.com/edm00se/generator-xsp/issues?q=author%3Aedm00se "Bug reports") [💻](https://github.com/edm00se/generator-xsp/commits?author=edm00se "Code") [📖](https://github.com/edm00se/generator-xsp/commits?author=edm00se "Documentation") [💡](#example-edm00se "Examples") [🚇](#infra-edm00se "Infrastructure (Hosting, Build-Tools, etc)") [👀](#review-edm00se "Reviewed Pull Requests") [⚠️](https://github.com/edm00se/generator-xsp/commits?author=edm00se "Tests") [🔧](#tool-edm00se "Tools") [📹](#video-edm00se "Videos") | [<img src="https://avatars0.githubusercontent.com/u/4763327?v=3" width="100px;"/><br /><sub>Oliver Busse</sub>](http://oliverbusse.com)<br />[🐛](https://github.com/edm00se/generator-xsp/issues?q=author%3Azeromancer1972 "Bug reports") |
+| [<img src="https://avatars0.githubusercontent.com/u/622118?v=3" width="100px;"/><br /><sub>Eric McCormick</sub>](https://ericmccormick.io)<br />[💬](#question-edm00se "Answering Questions") [📝](#blog-edm00se "Blogposts") [🐛](https://github.com/edm00se/generator-xsp/issues?q=author%3Aedm00se "Bug reports") [💻](https://github.com/edm00se/generator-xsp/commits?author=edm00se "Code") [📖](https://github.com/edm00se/generator-xsp/commits?author=edm00se "Documentation") [💡](#example-edm00se "Examples") [🚇](#infra-edm00se "Infrastructure (Hosting, Build-Tools, etc)") [👀](#review-edm00se "Reviewed Pull Requests") [⚠️](https://github.com/edm00se/generator-xsp/commits?author=edm00se "Tests") [🔧](#tool-edm00se "Tools") [📹](#video-edm00se "Videos") | [<img src="https://avatars0.githubusercontent.com/u/4763327?v=3" width="100px;"/><br /><sub>Oliver Busse</sub>](https://oliverbusse.com)<br />[🐛](https://github.com/edm00se/generator-xsp/issues?q=author%3Azeromancer1972 "Bug reports") |
 | :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
@@ -67,7 +68,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 
 The code in this project governs my unique contributions and is open, free to use and redistribute or modify, for public or private use, without warranty or liability.
 
-[The MIT License (MIT)](http://choosealicense.com/licenses/mit/) © 2016 Eric McCormick
+[The MIT License (MIT)](https://choosealicense.com/licenses/mit/) © 2016 Eric McCormick
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
