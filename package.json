@@ -50,6 +50,7 @@
     "lint-staged": "7.3.0",
     "prettier-eslint-cli": "4.7.1",
     "semantic-release": "15.9.16",
+    "travis-deploy-once": "5.0.9",
     "yeoman-assert": "3.1.1",
     "yeoman-test": "2.0.0"
   },
@@ -69,7 +70,6 @@
     "watch": "jest --watchAll --coverage",
     "format": "prettier-eslint \"generators/**/*.js\" \"__tests__/*.js\" --write",
     "lint": "eslint generators/**/*.js __tests__/*.js",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "precommit": "lint-staged && npm run test",
     "commit": "git-cz"
   },
