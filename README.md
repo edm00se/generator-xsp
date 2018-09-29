@@ -7,7 +7,15 @@
 
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage Status][codecov-image]][codecov-url] [![Codacy Badge][codacy-image]][codacy-url] [![semantic-release][semantic-release-image]][semantic-release-url] [![npm][npm-license]][npm-url] [![PRs Welcome][prs-badge]][prs] [![Roadmap][roadmap-badge]][roadmap] [![Issues][waffle-img]][waffle-link] [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 
-## Installation
+## Try With No Install
+
+Run:
+
+```bash
+npx -p yo -p generator-xsp -c 'yo xsp'
+```
+
+## Full Installation
 
 First, install [Yeoman](http://yeoman.io) and generator-xsp using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
