@@ -5,7 +5,7 @@ var helpers = require('yeoman-test');
 var testProjName = 'SomeApp';
 
 describe('generator-xsp:app', function () {
-  describe('app without bower or npm deps', function () {
+  describe('app without npm deps', function () {
     beforeEach(function () {
       return helpers
         .run(path.join(__dirname, '../generators/app'))
@@ -14,13 +14,12 @@ describe('generator-xsp:app', function () {
           basetheme: 'Bootstrap3',
           ddeplugins: ['com.ibm.xsp.extlib.library'],
           starterResources: false,
-          installBower: false,
           useNpm: false
         })
         .toPromise();
     });
 
-    it('creates base ODP files without bower, npm, or starter resources', function () {
+    it('creates base ODP files without npm, or starter resources', function () {
       assert.file([
         'ODP/.project',
         'ODP/AppProperties/database.properties',
@@ -31,8 +30,7 @@ describe('generator-xsp:app', function () {
         'ODP/Resources/StyleSheets/app.css',
         'ODP/Code/ScriptLibraries/app.js',
         'ODP/Code/ScriptLibraries/app.jss',
-        'package.json',
-        'bower.json'
+        'package.json'
       ]);
       assert.noFileContent('ODP/Resources/Themes/app.theme', 'app.css');
       assert.noFileContent('ODP/Resources/Themes/app.theme', 'app.js');
@@ -40,7 +38,7 @@ describe('generator-xsp:app', function () {
     });
   });
 
-  describe('app with npm, no bower, with starter theme components', function () {
+  describe('app with npm, with starter theme components', function () {
     beforeEach(function () {
       return helpers
         .run(path.join(__dirname, '../generators/app'))
@@ -51,7 +49,6 @@ describe('generator-xsp:app', function () {
           basetheme: 'webstandard',
           ddeplugins: [],
           starterResources: true,
-          installBower: false,
           useNpm: true
         })
         .toPromise();
@@ -69,14 +66,13 @@ describe('generator-xsp:app', function () {
         'ODP/Resources/IconNote',
         'package.json'
       ]);
-      assert.noFile(['bower.json']);
       assert.fileContent('ODP/Resources/Themes/app.theme', 'app.css');
       assert.fileContent('ODP/Resources/Themes/app.theme', 'app.js');
       assert.fileContent('ODP/Resources/Themes/app.theme', 'app.jss');
     });
   });
 
-  describe('app with bower no npm, alt ODP path', function () {
+  describe('app with no npm, alt ODP path', function () {
     beforeEach(function () {
       return helpers
         .run(path.join(__dirname, '../generators/app'))
@@ -88,19 +84,17 @@ describe('generator-xsp:app', function () {
           basetheme: 'Bootstrap3',
           ddeplugins: ['com.ibm.xsp.extlib.library'],
           starterResources: false,
-          installBower: true,
           useNpm: false
         })
         .toPromise();
     });
 
-    it('creates base ODP files with bower support', function () {
+    it('creates base ODP files', function () {
       assert.file([
         'NSF/.project',
         'NSF/AppProperties/database.properties',
         'NSF/plugin.xml',
-        'NSF/Resources/IconNote',
-        'bower.json'
+        'NSF/Resources/IconNote'
       ]);
       assert.noFile([
         'NSF/Resources/StyleSheets/app.css',
@@ -136,7 +130,7 @@ describe('generator-xsp:app', function () {
   });
 
   describe('CLI options power invocation', function () {
-    describe(' basic setup with bower no npm scripts', function () {
+    describe(' basic setup with no npm scripts', function () {
       beforeEach(function () {
         return helpers
           .run(path.join(__dirname, '../generators/app'))
@@ -145,7 +139,6 @@ describe('generator-xsp:app', function () {
             t: 'webstandard',
             r: true,
             'dde-plugins': 'ExtLib',
-            b: true,
             'skip-npm': true,
             p: 'ODP'
           })
@@ -158,7 +151,6 @@ describe('generator-xsp:app', function () {
           'ODP/AppProperties/database.properties',
           'ODP/plugin.xml',
           'ODP/Resources/IconNote',
-          'bower.json',
           'ODP/Resources/StyleSheets/app.css',
           'ODP/Code/ScriptLibraries/app.js',
           'ODP/Code/ScriptLibraries/app.jss'
@@ -166,7 +158,7 @@ describe('generator-xsp:app', function () {
         assert.noFile(['package.json']);
       });
     });
-    describe(' basic setup with npm scripts, no bower, starter resources', function () {
+    describe(' basic setup with npm scripts, starter resources', function () {
       beforeEach(function () {
         return helpers
           .run(path.join(__dirname, '../generators/app'))
@@ -175,7 +167,6 @@ describe('generator-xsp:app', function () {
             t: 'Bootstrap3',
             'no-res': true,
             d: 'ODA',
-            'skip-bower': true,
             npm: true,
             p: 'ODP'
           })
@@ -191,7 +182,6 @@ describe('generator-xsp:app', function () {
           'package.json'
         ]);
         assert.noFile([
-          'bower.json',
           'ODP/Resources/StyleSheets/app.css',
           'ODP/Code/ScriptLibraries/app.js',
           'ODP/Code/ScriptLibraries/app.jss'
