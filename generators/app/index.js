@@ -94,24 +94,6 @@ module.exports = class extends Generator {
       this.ddeplugins = ar;
     }
 
-    this.option('use-bower', {
-      desc: 'opts-in to using Bower for client-side dependency management',
-      type: Boolean,
-      alias: 'b'
-    });
-    this.option('skip-bower', {
-      desc: 'opts-out of using Bower, use instead of --use-bower',
-      type: Boolean
-    });
-    if (this.options['use-bower']) {
-      this.useBower = true;
-      this.config.set('installBower', true);
-    }
-    if (this.options['skip-bower']) {
-      this.useBower = false;
-      this.config.set('installBower', false);
-    }
-
     this.option('use-npm', {
       desc:
         'opts-in to using npm for dependency management and adds a dora cleaning script to package.json',
@@ -264,16 +246,6 @@ module.exports = class extends Generator {
       },
       {
         type: 'confirm',
-        name: 'installBower',
-        message: 'Would you like to use Bower for dependency management?',
-        default: false,
-        store: true,
-        when: function () {
-          return undefined === ctx.useBower;
-        }
-      },
-      {
-        type: 'confirm',
         name: 'useNpm',
         message: 'Include npm scripts (clean to perform a la DORA), etc.?',
         default: true,
@@ -316,20 +288,6 @@ module.exports = class extends Generator {
       this.fs.copy(
         this.templatePath('_gitignore'),
         this.destinationPath('.gitignore')
-      );
-    }
-    // Only load Bower files if requested
-    if (this.props.installBower || this.useBower) {
-      this.fs.copyTpl(
-        this.templatePath('_bower.json'),
-        this.destinationPath('bower.json'),
-        {
-          name: this.props.name
-        }
-      );
-      this.fs.copy(
-        this.templatePath('_bowerrc'),
-        this.destinationPath('.bowerrc')
       );
     }
   }
@@ -413,18 +371,13 @@ module.exports = class extends Generator {
       return;
     }
     let depOpt = {
-      bower: false,
       npm: false
     };
-    /* istanbul ignore else */
-    if (this.props.installBower) {
-      depOpt.bower = true;
-    }
     /* istanbul ignore else */
     if (this.props.useNpm) {
       depOpt.npm = true;
     }
-    if (depOpt.bower === false && depOpt.npm === false) {
+    if (depOpt.npm === false) {
       // Intentionally left blank
     } else {
       this.installDependencies(depOpt);
