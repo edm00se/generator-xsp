@@ -5,7 +5,7 @@
 
 > a [yeoman](http://yeoman.io/) generator to scaffold an XPages runtime (xsp) compliant On Disk Project (ODP)
 
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage Status][codecov-image]][codecov-url] [![Codacy Badge][codacy-image]][codacy-url] [![semantic-release][semantic-release-image]][semantic-release-url] [![npm][npm-license]][npm-url] [![PRs Welcome][prs-badge]][prs] [![Roadmap][roadmap-badge]][roadmap] [![Issues][waffle-img]][waffle-link] [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage Status][codecov-image]][codecov-url] [![Codacy Badge][codacy-image]][codacy-url] [![semantic-release][semantic-release-image]][semantic-release-url] [![npm][npm-license]][npm-url] [![PRs Welcome][prs-badge]][prs] [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 
 ## Try With No Install
 
@@ -108,7 +108,3 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 [semantic-release-url]: https://github.com/semantic-release/semantic-release
 [prs-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg
 [prs]: http://makeapullrequest.com
-[roadmap]: https://waffle.io/edm00se/generator-xsp
-[roadmap-badge]: https://img.shields.io/badge/%F0%9F%93%94-roadmap-CD9523.svg
-[waffle-img]: https://badge.waffle.io/edm00se/generator-xsp.png?label=In%20Progress&title=In%20Progress
-[waffle-link]: https://waffle.io/edm00se/generator-xsp
