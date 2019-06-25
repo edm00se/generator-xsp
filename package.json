@@ -31,7 +31,7 @@
     "change-case": "3.0.2",
     "cheerio": "0.22.0",
     "file-exists": "5.0.1",
-    "js-beautify": "1.8.6",
+    "js-beautify": "1.10.0",
     "lodash": "4.17.11",
     "update-notifier": "2.5.0",
     "yeoman-generator": "3.1.1",
