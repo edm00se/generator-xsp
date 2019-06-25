@@ -12,7 +12,7 @@
 Run:
 
 ```bash
-npm init yo generator-xsp
+npm init yo xsp
 ```
 
 What's that? It's the `npm init` command executing `create-yo` with `generator-xsp` as an argument to execute. With `npx` it can be achieved with.
