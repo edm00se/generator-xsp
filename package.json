@@ -42,7 +42,7 @@
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "^3.0.2",
     "eslint": "6.6.0",
-    "eslint-config-xo-space": "^0.21.0",
+    "eslint-config-xo-space": "^0.22.0",
     "eslint-formatter-pretty": "^2.1.1",
     "husky": "3.0.9",
     "jest": "25.0.0",
