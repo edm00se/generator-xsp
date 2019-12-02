@@ -28,7 +28,7 @@
   ],
   "dependencies": {
     "chalk": "3.0.0",
-    "change-case": "^3.1.0",
+    "change-case": "^4.0.0",
     "cheerio": "^0.22.0",
     "file-exists": "^5.0.1",
     "js-beautify": "1.10.2",
