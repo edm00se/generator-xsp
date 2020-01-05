@@ -47,6 +47,7 @@ module.exports = class extends Generator {
       this.starterResources = true;
       this.config.set('starterResources', true);
     }
+
     if (this.options['skip-starter-resources']) {
       this.starterResources = false;
       this.config.set('starterResources', false);
@@ -66,6 +67,7 @@ module.exports = class extends Generator {
       } else {
         tmpAr.push(this.options['dde-plugins']);
       }
+
       tmpAr.forEach(function (val) {
         switch (val) {
           case 'ExtLib':
@@ -91,6 +93,7 @@ module.exports = class extends Generator {
           }
         }
       }
+
       this.ddeplugins = ar;
     }
 
@@ -108,6 +111,7 @@ module.exports = class extends Generator {
       this.useNpm = true;
       this.config.set('useNpm', true);
     }
+
     if (this.options['skip-npm']) {
       this.useNpm = false;
       this.config.set('useNpm', false);
@@ -140,6 +144,7 @@ module.exports = class extends Generator {
     if (this.options['set-odp-path']) {
       this.odpPath = this.options['set-odp-path'];
     }
+
     this.config.set('odpPath', this.odpPath);
   }
 
@@ -208,6 +213,7 @@ module.exports = class extends Generator {
               '\n  🍰  ExtLib pre-selected in order to extend ' +
               answerOb.basetheme;
           }
+
           return str;
         },
         choices: [
@@ -269,19 +275,21 @@ module.exports = class extends Generator {
     if (this.reconfigureOdp === true) {
       return;
     }
+
     const tmpPlugins = this.ddeplugins || this.props.ddeplugins;
     if (tmpPlugins.indexOf('com.ibm.xsp.extlib.library') > -1) {
       this.config.set('useExtLib', true);
     } else {
       this.config.set('useExtLib', false);
     }
+
     /* istanbul ignore else */
     if (this.props.useNpm || this.useNpm) {
       this.fs.copyTpl(
         this.templatePath('_package.json'),
         this.destinationPath('package.json'),
         {
-          name: changeCase.paramCase(this.props.name),
+          name: changeCase.paramCase(this.props.name || ''),
           odp: this.odpPath
         }
       );
@@ -297,6 +305,7 @@ module.exports = class extends Generator {
     if (this.reconfigureOdp === true) {
       return;
     }
+
     // Main ODP
     this.fs.copy(this.templatePath('ODP'), this.destinationPath(this.odpPath));
     // .gitattributes
@@ -370,6 +379,7 @@ module.exports = class extends Generator {
     if (this.reconfigureOdp === true) {
       return;
     }
+
     let depOpt = {
       npm: false
     };
@@ -377,6 +387,7 @@ module.exports = class extends Generator {
     if (this.props.useNpm) {
       depOpt.npm = true;
     }
+
     if (depOpt.npm === false) {
       // Intentionally left blank
     } else {

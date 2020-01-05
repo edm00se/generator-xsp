@@ -7,6 +7,7 @@ const chalk = require('chalk');
 const yosay = require('yosay');
 const cheerio = require('cheerio');
 const changeCase = require('change-case');
+const lowerCase = require('lower-case').lowerCase;
 const updateNotifier = require('update-notifier');
 const pkg = require('../../package.json');
 
@@ -104,7 +105,7 @@ module.exports = class extends Generator {
     const pkg = this.props.package;
     this.props.dir = parts.join('/');
     this.props.name = name;
-    const lCaseName = changeCase.lowerCase(this.props.name);
+    const lCaseName = lowerCase(this.props.name);
 
     const namespace = (this.props.namespace || '').replace(/\./g, '/');
 
@@ -179,6 +180,7 @@ You should de-conflict your faces-config.xml file manually.`
               if (err) {
                 throw err;
               }
+
               log(
                 yosay(
                   'The bean\'s class has been created and the ' +
