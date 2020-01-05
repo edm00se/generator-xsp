@@ -78,7 +78,8 @@ module.exports = class extends Generator {
     const odpPath = this.config.get('odpPath') || 'ODP';
     const vm = this;
     const log = vm.log;
-    const endpoint = changeCase.camelCase(vm.endpoint) || vm.props.endpoint;
+    const endpoint =
+      changeCase.camelCase(vm.endpoint || '') || vm.props.endpoint;
     // Define templating vars
     const opt = {
       svcName: endpoint,
@@ -99,6 +100,7 @@ module.exports = class extends Generator {
           if (err) {
             throw err;
           }
+
           let $ = cheerio.load(data, {
             xmlMode: true
           });
@@ -123,6 +125,7 @@ state="false">
               if (er) {
                 throw er;
               }
+
               log('The ' + chalk.red('api.xsp') + ' has been updated!');
             }
           );
@@ -136,6 +139,7 @@ state="false">
         opt
       );
     }
+
     vm.fs.copyTpl(
       vm.templatePath('./_serviceBean.java'),
       vm.destinationPath(odpPath + '/Code/Java/' + opt.serviceBeanPathClass),
