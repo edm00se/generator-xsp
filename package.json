@@ -38,7 +38,7 @@
     "yosay": "^2.0.2"
   },
   "devDependencies": {
-    "all-contributors-cli": "6.11.2",
+    "all-contributors-cli": "6.13.0",
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "^3.0.2",
     "eslint": "6.8.0",
