@@ -33,7 +33,7 @@
     "file-exists": "^5.0.1",
     "js-beautify": "1.10.3",
     "lodash": "4.17.15",
-    "update-notifier": "4.0.0",
+    "update-notifier": "4.1.0",
     "yeoman-generator": "4.5.0",
     "yosay": "^2.0.2"
   },
