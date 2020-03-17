@@ -50,7 +50,7 @@
     "prettier-eslint-cli": "^5.0.0",
     "travis-deploy-once": "^5.0.11",
     "yeoman-assert": "^3.1.1",
-    "yeoman-test": "2.1.0"
+    "yeoman-test": "2.3.0"
   },
   "config": {
     "commitizen": {
