@@ -27,7 +27,7 @@
     "yeoman-generator"
   ],
   "dependencies": {
-    "chalk": "3.0.0",
+    "chalk": "4.0.0",
     "change-case": "4.1.1",
     "cheerio": "^0.22.0",
     "file-exists": "^5.0.1",
