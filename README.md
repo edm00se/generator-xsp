@@ -1,3 +1,8 @@
+## Archived
+
+Due to a lack of interest by others or myself for active development or maintainance of this repo, I am archiving it.
+
+
 <div align="center">
 <h1>generator-xsp</h1>
 <pre><code>yo xsp</code></pre>
